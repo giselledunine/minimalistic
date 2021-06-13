@@ -1,36 +1,25 @@
 <template>
   <div id="app">
     <div class="wrapper">
-      <b-navbar class="nav" toggleable="lg" type="dark">
-        <b-navbar-brand to="/"><h3>Minimalistic_</h3></b-navbar-brand>
-
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item to="/apropos">À propos</b-nav-item>
-            <b-nav-item to="/projets">Projets</b-nav-item>
-          </b-navbar-nav>
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-
+<Header></Header>
       <router-view></router-view>
 
-    <footer class="footer">
-      <a class="lien" href="/mentionlegales">Mentions légales</a>
-    </footer>
+
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 
+import Header from "@/components/layouts/Header";
+import Footer from "@/components/layouts/Footer";
+
 export default {
   name: 'App',
   components: {
+    Header,
+    Footer
   },
   data(){
     return {
@@ -70,19 +59,45 @@ export default {
 
 <style lang="css">
 #app {
-  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  font-family: Lato, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   text-align: center;
+  font-size: 14px;
   color: #2c3e50;
+  height: fit-content;
+}
+
+h1 {
+  color: white;
+  font-weight: 700 !important;
+  font-size: 2.6rem !important;
+}
+
+h2 {
+  color: white;
+  font-size: 1.5rem !important;
 }
 
 h3 {
   font-size: 1.7rem !important;
   color: white;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 0 !important;
+}
+
+.btn {
+  background-color: #FCA311 !important;
+  border: none !important;
+  font-family: Lato, sans-serif;
+  color: black !important;
+  width: 100px;
+  margin-left: 1rem;
+}
+.btn:hover{
+  background-color: #D98803 !important;
+  color: black !important;
 }
 
 .lien {
@@ -106,7 +121,7 @@ p{
 
 .wrapper {
   background-color: #000000;
-  min-height: 82vh;
+  height: fit-content;
 }
 
 .footer {

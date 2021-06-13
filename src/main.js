@@ -20,7 +20,7 @@ const routes = [
     name: "Home",
     // component: Home
     components: {
-      default: () => import(/* webpackChunkName: "home" */ "./components/Home"),
+      default: () => import(/* webpackChunkName: "home" */ "./views/Home"),
     },
     children: [],
   },
