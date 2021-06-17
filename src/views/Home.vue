@@ -5,14 +5,23 @@
         <h1>Le <span>mentoring</span> qui permet aux nouveaux minimalistes d'êtres coachés</h1>
         <p>Nous vous proposons une transition vers le minimalisme adaptée uniquement pour vous car chaque personne peut avoir sa propre vision du minimalisme.</p>
         <p class="inputlabel">S'incrire à la Newsletter</p>
+        <v-snackbar
+            :timeout="5000"
+            :value="snackbar"
+            color="deep-purple accent-4"
+            elevation="24"
+        >
+          Lorem ipsum dolor sit amet consectetur.
+        </v-snackbar>
+
         <form @submit.prevent="sendEmail">
         <v-container class="inscription">
           <v-row no-gutters>
             <v-col cols="12" sm="9">
-              <b-form-input  type="email" name="customer_email" class="input" v-model="name" :state="nameState" placeholder="Votre adresse mail"></b-form-input>
+              <b-form-input  type="email" name="customer_email" class="input" v-model="email" :state="nameState" placeholder="Votre adresse mail"></b-form-input>
             </v-col>
             <v-col cols="12" sm="3">
-              <b-button type="submit" class="btn marginLeft">S'incrire</b-button>
+              <b-button type="submit" class="btn ">S'incrire</b-button>
             </v-col>
           </v-row>
         </v-container>
@@ -208,7 +217,7 @@
         <v-container class="inscription newsletter">
           <v-row no-gutters>
             <v-col cols="12" sm="9">
-              <b-form-input  type="email" name="customer_email" class="input" v-model="name" :state="nameState" placeholder="Votre adresse mail"></b-form-input>
+              <b-form-input  type="email" name="customer_email" class="input" v-model="email" :state="nameState" placeholder="Votre adresse mail"></b-form-input>
             </v-col>
             <v-col cols="12" sm="3">
               <b-button type="submit" class="btn marginLeft">S'incrire</b-button>
@@ -225,24 +234,34 @@ import emailjs from 'emailjs-com';
 
 export default {
 name: "Home",
-  methods: {
-    sendEmail: (e) => {
-      emailjs.sendForm('service_jigdj2r', 'template_1z1zwi9', e.target, 'user_jCrnz8KGYvv1r02jdXO6Y')
-          .then((result) => {
-            console.log('SUCCESS!', result.status, result.text);
-          }, (error) => {
-            console.log('FAILED...', error);
-          });
-    }
-  },
-  computed: {
-    nameState() {
-      return this.name.length > 2 || this.name.length === 0  ? true : false
-    }
+  created(){
+    document.title = 'Minimalistic - LandingPage'
   },
   data() {
     return {
-      name: ''
+      email: '',
+      snackbar: false,
+    }
+  },
+  methods: {
+    reset() {
+      this.email = ''
+    },
+    sendEmail(e) {
+      console.log(this);
+      emailjs.sendForm('service_jigdj2r', 'template_1z1zwi9', e.target, 'user_jCrnz8KGYvv1r02jdXO6Y')
+          .then((result) => {
+            console.log('SUCCESS!', result.status, result.text);
+            this.email = '';
+            this.snackbar = true;
+          }, (error) => {
+            console.log('FAILED...', error);
+          });
+    },
+  },
+  computed: {
+    nameState() {
+      return this.email.length > 2 || this.email.length === 0  ? true : false
     }
   }
 }
@@ -252,7 +271,7 @@ name: "Home",
 
 @media screen {
   span {
-    color: #FCA311;
+    color: #6081FA;
   }
 
   h4  {
@@ -324,20 +343,6 @@ name: "Home",
     background-color: #1E1E1E;
   }
 
-  .input {
-    background-color: #232323;
-    border: #232323;
-    color: white;
-  }
-
-  .input:focus {
-    background-color: #232323;
-    border: #232323;
-    color: white;
-    box-shadow: none;
-    caret-color: #FCA311;
-  }
-
   .inscription {
     padding: 0 !important;
   }
@@ -373,7 +378,7 @@ name: "Home",
 
   .number {
     font-size: 1.5rem;
-    color: #FCA311;
+    color: #6081FA;
     font-weight: 700;
   }
 

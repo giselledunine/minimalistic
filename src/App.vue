@@ -88,15 +88,26 @@ h3 {
 }
 
 .btn {
-  background-color: #FCA311 !important;
+  background-color: #6081FA !important;
   border: none !important;
   font-family: Lato, sans-serif;
-  color: black !important;
-  width: 100px;
+  color: black !important;;
   margin-left: 1rem;
 }
 .btn:hover{
-  background-color: #D98803 !important;
+  background-color: #2F5AF8 !important;
+  color: black !important;
+}
+
+.btnConnect {
+  background-color: #232323 !important;
+  border: solid 1px !important;
+  font-family: Lato, sans-serif;
+  color: #6081FA !important;;
+  margin-left: 1rem;
+}
+.btnConnect:hover{
+  background-color: #2F5AF8 !important;
   color: black !important;
 }
 
@@ -117,6 +128,22 @@ em {
 
 p{
   color: white;
+}
+
+.input {
+  background-color: #232323 !important;
+  border: #232323;
+  color: white;
+  width: 96% !important;
+}
+
+.input:focus {
+  background-color: #232323 !important;
+  border: #232323;
+  color: white;
+  box-shadow: none;
+  caret-color: #6081FA;
+;
 }
 
 .wrapper {

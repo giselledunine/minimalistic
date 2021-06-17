@@ -30,7 +30,10 @@ quasi aliquam eligendi, placeat qui corporis!
 
 <script>
 export default {
-  name: "apropos"
+  name: "apropos",
+  created(){
+    document.title = 'Minimalistic - A propos'
+  }
 }
 </script>
 

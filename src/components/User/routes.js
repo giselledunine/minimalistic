@@ -16,4 +16,18 @@ export default [
         }
             ]
     },
+    {
+        path: '/login',
+        name: 'Login',
+        components : {
+            default: () => import('@/components/Login')
+        }
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        components : {
+            default: () => import('@/components/Register')
+        }
+    }
 ]

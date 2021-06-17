@@ -12,9 +12,9 @@
         <b-nav-item to="/projets">Contact</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto" left>
-        <v-icon color="#ffffff">mdi-twitter</v-icon>
-        <v-icon color="#ffffff">mdi-facebook</v-icon>
-        <v-icon color="#ffffff">mdi-instagram</v-icon>
+        <v-icon class="margin" color="#ffffff">mdi-twitter</v-icon>
+        <v-icon class="margin" color="#ffffff">mdi-facebook</v-icon>
+        <v-icon class="margin" color="#ffffff">mdi-instagram</v-icon>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -31,6 +31,10 @@ name: "Footer"
 <style scoped>
 .nav {
   background-color: #232323;
+}
+
+.margin {
+  margin: 0 0.5rem;
 }
 
 .menu {
