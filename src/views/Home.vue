@@ -32,6 +32,7 @@
       </div>
     </div>
     <div class="div2">
+      <h1>Bonjour</h1>
       <h2>Notre objectif est d’accompagner nos futurs minimalistes</h2>
       <p>Notre but est d’offrir aux minimalistes la meilleure transition propre a eux-mêmes. Minimalistic vous propose une plateforme de mentoring qui permettra aux nouveaux minimalistes d’être coaché par des minimalistes experts sur plusieurs sujets (mode de vie, mobilier, décoration, alimentation...)</p>
     </div>
