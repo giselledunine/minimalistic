@@ -70,7 +70,7 @@
           vertical
       ></v-divider>
       <div class="cardnumber">
-        <p class="number">+500</p>
+        <p class="number">500+</p>
         <p>visiteurs</p>
       </div>
     </div>
@@ -294,6 +294,7 @@ name: "Home",
     align-content: center;
     justify-content: space-between;
     align-items: center;
+    margin-top: 4rem;
   }
 
   .flex2 {
@@ -364,7 +365,7 @@ name: "Home",
   }
 
   #img {
-    width: 70%;
+    width: 85%;
   }
 
   .cardnumber {
