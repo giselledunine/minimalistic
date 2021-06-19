@@ -11,7 +11,7 @@
             color="deep-purple accent-4"
             elevation="24"
         >
-          Lorem ipsum dolor sit amet consectetur.
+          Votre incription a bien été prise en compte
         </v-snackbar>
 
         <form @submit.prevent="sendEmail">
@@ -250,7 +250,7 @@ name: "Home",
     },
     sendEmail(e) {
       console.log(this);
-      emailjs.sendForm('service_jigdj2r', 'template_1z1zwi9', e.target, 'user_jCrnz8KGYvv1r02jdXO6Y')
+      emailjs.sendForm('service_jigdj2r', 'template_il6k0gh', e.target, 'user_jCrnz8KGYvv1r02jdXO6Y')
           .then((result) => {
             console.log('SUCCESS!', result.status, result.text);
             this.email = '';

@@ -59,6 +59,14 @@ const routes = [
         import(/* webpackChunkName: "users" */ "@/views/Mentionlegales"),
     },
   },
+  {
+    path: "/newsletter/:email", // pas de suite, donc fin de l'[A6]  = lyon
+    name: "Newsletter",
+    components: {
+      default: () =>
+          import(/* webpackChunkName: "users" */ "@/views/Newsletter"),
+    },
+  },
   ...UserRoutes,
 ];
 const router = new VueRouter({

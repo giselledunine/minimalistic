@@ -35,10 +35,6 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: white;
-  font-family: 'Abril Fatface';
-}
 
 p {
   text-align: justify;

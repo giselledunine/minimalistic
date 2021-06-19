@@ -63,8 +63,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
-  text-align: center;
   font-size: 14px;
+  background-color: #000000;
   color: #2c3e50;
   height: fit-content;
 }
@@ -147,7 +147,6 @@ p{
 }
 
 .wrapper {
-  background-color: #000000;
   height: fit-content;
 }
 

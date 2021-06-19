@@ -10,6 +10,7 @@
         <b-nav-item to="/apropos">À propos</b-nav-item>
         <b-nav-item to="/projets">Formule d'abonnement</b-nav-item>
         <b-nav-item to="/projets">Contact</b-nav-item>
+        <b-nav-item to="/mentionlegales">Mentions légales</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto" left>
         <v-icon class="margin" color="#ffffff">mdi-twitter</v-icon>

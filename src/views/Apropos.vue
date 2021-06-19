@@ -38,10 +38,6 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: white;
-  font-family: 'Abril Fatface';
-}
 
 @media screen and (min-width: 980px) {
   p {
