@@ -64,6 +64,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-size: 14px;
+  text-align: center;
   background-color: #000000;
   color: #2c3e50;
   height: fit-content;

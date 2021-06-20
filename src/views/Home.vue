@@ -4,7 +4,7 @@
       <div class="home">
         <h1>Le <span>mentoring</span> qui permet aux nouveaux minimalistes d'êtres coachés</h1>
         <p>Nous vous proposons une transition vers le minimalisme adaptée uniquement pour vous car chaque personne peut avoir sa propre vision du minimalisme.</p>
-        <p class="inputlabel">S'incrire à la Newsletter</p>
+
         <v-snackbar
             :timeout="5000"
             :value="snackbar"
@@ -13,26 +13,13 @@
         >
           Votre incription a bien été prise en compte
         </v-snackbar>
-
-        <form @submit.prevent="sendEmail">
-        <v-container class="inscription">
-          <v-row no-gutters>
-            <v-col cols="12" sm="9">
-              <b-form-input  type="email" name="customer_email" class="input" v-model="email" :state="nameState" placeholder="Votre adresse mail"></b-form-input>
-            </v-col>
-            <v-col cols="12" sm="3">
-              <b-button type="submit" class="btn ">S'incrire</b-button>
-            </v-col>
-          </v-row>
-        </v-container>
-      </form>
+        <b-button class="btn ">Trouver un Mentor</b-button>
       </div>
       <div class="img">
         <img src="./../assets/img/fond1.png" width="100%" alt="fond1">
       </div>
     </div>
     <div class="div2">
-      <h1>Bonjour</h1>
       <h2>Notre objectif est d’accompagner nos futurs minimalistes</h2>
       <p>Notre but est d’offrir aux minimalistes la meilleure transition propre a eux-mêmes. Minimalistic vous propose une plateforme de mentoring qui permettra aux nouveaux minimalistes d’être coaché par des minimalistes experts sur plusieurs sujets (mode de vie, mobilier, décoration, alimentation...)</p>
     </div>
@@ -71,7 +58,7 @@
           vertical
       ></v-divider>
       <div class="cardnumber">
-        <p class="number">500+</p>
+        <p class="number">10 000+</p>
         <p>visiteurs</p>
       </div>
     </div>
@@ -89,7 +76,74 @@
     </div>
     <div>
       <div class="div5 padding">
-        <div> Images </div>
+        <div class="avatar">
+          <v-avatar
+              color="indigo"
+              size="108"
+          >
+            <img
+                src="./../assets/img/avatar1.png"
+                alt="John"
+            >
+          </v-avatar><v-avatar
+              color="indigo"
+              size="108"
+          >
+            <img
+                src="./../assets/img/avatar2.png"
+                alt="John"
+            >
+          </v-avatar><v-avatar
+              color="indigo"
+              size="108"
+          >
+            <img
+                src="./../assets/img/avatar3.png"
+                alt="John"
+            >
+          </v-avatar><v-avatar
+              color="indigo"
+              size="108"
+          >
+            <img
+                src="./../assets/img/avatar4.png"
+                alt="John"
+            >
+          </v-avatar><v-avatar
+              color="indigo"
+              size="108"
+          >
+            <img
+                src="./../assets/img/avatar5.png"
+                alt="John"
+            >
+          </v-avatar><v-avatar
+              color="indigo"
+              size="108"
+          >
+            <img
+                src="./../assets/img/avatar6.png"
+                alt="John"
+            >
+          </v-avatar><v-avatar
+              color="indigo"
+              size="108"
+          >
+            <img
+                src="./../assets/img/avatar7.png"
+                alt="John"
+            >
+          </v-avatar><v-avatar
+              color="indigo"
+              size="108"
+          >
+            <img
+                src="./../assets/img/avatar8.png"
+                alt="John"
+            >
+          </v-avatar>
+
+        </div>
         <h2>Des milliers de coachs spécialisés pour vous</h2>
         <p>Nous avons des milliers de coachs venant du monde entier qui sont là pour vous aider !</p>
       </div>
@@ -143,14 +197,6 @@
                   Coach personnel
                 </v-list-item-content>
               </v-list-item>
-              <v-list-item disabled>
-                <v-list-item-icon>
-                  <v-icon disabled>mdi-close</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content class="marginLeft">
-                  7 jours d'essai gratuit
-                </v-list-item-content>
-              </v-list-item>
             </v-list>
             <b-button class="btn">Commencer</b-button>
           </div>
@@ -171,7 +217,7 @@
                   <v-icon>mdi-check</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content class="marginLeft">
-                  Guide
+                  Guide pdf
                 </v-list-item-content>
               </v-list-item>
               <v-list-item>
@@ -179,7 +225,7 @@
                   <v-icon>mdi-check</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content class="marginLeft">
-                  Suivi simple
+                  Suivi personnalisé
                 </v-list-item-content>
               </v-list-item>
               <v-list-item>
@@ -187,7 +233,7 @@
                   <v-icon>mdi-check</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content class="marginLeft">
-                  Vidéos et replays
+                  Accès à toutes nos vidéos
                 </v-list-item-content>
               </v-list-item>
               <v-list-item >
@@ -196,14 +242,6 @@
                 </v-list-item-icon>
                 <v-list-item-content class="marginLeft">
                   Coach personnel
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item >
-                <v-list-item-icon>
-                  <v-icon >mdi-check</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content class="marginLeft">
-                  15 jours d'essai gratuit
                 </v-list-item-content>
               </v-list-item>
             </v-list>
@@ -289,6 +327,12 @@ name: "Home",
     margin-left: 0;
   }
 
+  .avatar {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+  }
+
   .flex1 {
     display: flex;
     flex-wrap: wrap-reverse;
@@ -356,7 +400,7 @@ name: "Home",
 
   .home {
     text-align: left;
-    padding: 6rem 6rem 6rem 3rem;
+    padding: 0 7rem 0 8rem;
     width: 50%;
   }
 
