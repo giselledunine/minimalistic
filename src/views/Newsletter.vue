@@ -34,7 +34,7 @@ name: "Newsletter",
       await axios.post('https://api.sendinblue.com/v3/contacts', {email: this.email}, {headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          'api-key': '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'
+          'api-key': `${process.env.VUE_APP_SB_APIKEY}`
         }, })
     }catch (err){
       console.log(err)

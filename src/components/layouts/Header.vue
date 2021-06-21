@@ -12,9 +12,10 @@
         <b-nav-item to="/apropos">À propos</b-nav-item>
         <b-nav-item to="/projets">Formule d'abonnement</b-nav-item>
         <b-nav-item to="/projets">Contact</b-nav-item>
+        <b-nav-item to="/blog">Blog</b-nav-item>
         <b-button v-if="loggedIn" @click="signOut" class="btn">Déconnecter</b-button>
         <div v-else>
-          <b-button to="/login" class="btnConnect">Se conecter</b-button>
+          <b-button to="/login" class="btnConnect">Se connecter</b-button>
           <b-button to="/register" class="btn">S'incrire</b-button>
         </div>
       </b-navbar-nav>

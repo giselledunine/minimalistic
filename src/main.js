@@ -52,6 +52,13 @@ const routes = [
     },
   },
   {
+    path: "/blog",
+    name: "Blog",
+    components: {
+      default: () => import(/* webpackChunkName: "home" */ "./views/Blog"),
+    },
+  },
+  {
     path: "/mentionlegales", // pas de suite, donc fin de l'[A6]  = lyon
     name: "Mentions Légales",
     components: {
@@ -80,7 +87,7 @@ Vue.config.productionTip = false;
 // TODO: Replace the following with your app's Firebase project configuration
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 const firebaseConfig = {
-  apiKey: "AIzaSyCeHKkGpRgVDraBAeqcyIuYlTn3J2Gwzls",
+  apiKey: `${process.env.VUE_APP_FIREBASE_APIKEY}`,
   authDomain: "minimalistic-6c67a.firebaseapp.com",
   projectId: "minimalistic-6c67a",
   storageBucket: "minimalistic-6c67a.appspot.com",

@@ -4,7 +4,6 @@
 <Header></Header>
       <router-view></router-view>
 
-
     </div>
     <Footer></Footer>
   </div>
@@ -20,6 +19,10 @@ export default {
   components: {
     Header,
     Footer
+  },
+  created(){
+    console.log(process.env.VUE_APP_SB_APIKEY)
+    console.log(process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN)
   },
   data(){
     return {
