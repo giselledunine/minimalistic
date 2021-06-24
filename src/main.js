@@ -59,11 +59,19 @@ const routes = [
     },
   },
   {
-    path: "/mentionlegales", // pas de suite, donc fin de l'[A6]  = lyon
+    path: "/mentionlegales",
     name: "Mentions Légales",
     components: {
       default: () =>
         import(/* webpackChunkName: "users" */ "@/views/Mentionlegales"),
+    },
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    components: {
+      default: () =>
+          import(/* webpackChunkName: "users" */ "@/components/Contact"),
     },
   },
   {

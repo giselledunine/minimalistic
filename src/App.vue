@@ -3,9 +3,8 @@
     <div class="wrapper">
 <Header></Header>
       <router-view></router-view>
-
+      <Footer></Footer>
     </div>
-    <Footer></Footer>
   </div>
 </template>
 
@@ -69,14 +68,19 @@ export default {
   font-size: 14px;
   text-align: center;
   background-color: #000000;
-  color: #2c3e50;
-  height: fit-content;
+  color: #B2B2B2;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 3rem;
 }
 
 h1 {
   color: white;
   font-weight: 700 !important;
   font-size: 2.6rem !important;
+  max-width: 60vw;
+  margin: 0 auto;
+  text-align: center;
 }
 
 h2 {
@@ -91,12 +95,17 @@ h3 {
   margin: 0 !important;
 }
 
+span {
+  color: #6081FA;
+}
+
 .btn {
   background-color: #6081FA !important;
   border: none !important;
   font-family: Lato, sans-serif;
   color: black !important;;
   margin-left: 1rem;
+  padding: 0.5rem 2rem !important;
 }
 .btn:hover{
   background-color: #2F5AF8 !important;
@@ -136,9 +145,8 @@ p{
 
 .input {
   background-color: #232323 !important;
-  border: #232323;
+  border: #232323 !important;
   color: white;
-  width: 96% !important;
 }
 
 .input:focus {
@@ -147,7 +155,10 @@ p{
   color: white;
   box-shadow: none;
   caret-color: #6081FA;
-;
+}
+
+.margin {
+  margin: 0 0.5rem;
 }
 
 .wrapper {

@@ -9,15 +9,17 @@
     <b-collapse id="nav-collapse" is-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item to="/apropos">À propos</b-nav-item>
-        <b-nav-item to="/projets">Formule d'abonnement</b-nav-item>
-        <b-nav-item to="/projets">Contact</b-nav-item>
-        <b-nav-item to="/blog">Blog</b-nav-item>
+        <!-- <b-nav-item to="/apropos">À propos</b-nav-item> -->
+        <!-- <b-nav-item to="/projets">Formule d'abonnement</b-nav-item> -->
+        <b-nav-item to="/contact">Contact</b-nav-item>
+        <b-nav-item href="https://minimalistic-mentoring.medium.com/">Blog</b-nav-item>
         <b-button v-if="loggedIn" @click="signOut" class="btn">Déconnecter</b-button>
+        <!--
         <div v-else>
           <b-button to="/login" class="btnConnect">Se connecter</b-button>
-          <b-button to="/register" class="btn">S'incrire</b-button>
+          <b-button to="/register" class="btn">S'inscrire</b-button>
         </div>
+        -->
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

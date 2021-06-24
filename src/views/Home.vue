@@ -13,7 +13,21 @@
         >
           Votre incription a bien été prise en compte
         </v-snackbar>
+        <form class="contact-form" @submit.prevent="sendEmail">
+          <v-container class="inscription newsletter">
+            <v-row no-gutters>
+              <v-col cols="12" sm="9">
+                <b-form-input  type="email" name="customer_email" class="input" v-model="email" placeholder="Votre adresse mail"></b-form-input>
+              </v-col>
+              <v-col cols="12" sm="3">
+                <b-button type="submit" class="btn marginLeft">S'incrire</b-button>
+              </v-col>
+            </v-row>
+          </v-container>
+        </form>
+        <!--
         <b-button class="btn ">Trouver un Mentor</b-button>
+        -->
       </div>
       <div class="img">
         <img src="./../assets/img/fond1.png" width="100%" alt="fond1">
@@ -269,7 +283,8 @@
 </template>
 
 <script>
-import emailjs from 'emailjs-com';
+//import emailjs from 'emailjs-com';
+import axios from 'axios';
 
 export default {
 name: "Home",
@@ -286,18 +301,38 @@ name: "Home",
     reset() {
       this.email = ''
     },
-    sendEmail(e) {
-      console.log(this);
+    sendEmail: async function () {
+      try {
+        await axios.post('https://api.sendinblue.com/v3/smtp/email', {
+          sender: {
+            name: 'Minimalistic',
+            email: 'pegasus.agencyy@gmail.com'
+          },
+          to: [{email: this.email}],
+          params: {customer_email: this.email},
+          templateId: 6
+        }, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'api-key': `${process.env.VUE_APP_SB_APIKEY}`
+          },
+        })
+        this.email = '';
+        this.snackbar = true;
+      } catch (err) {
+        console.log(err)
+      }
+      /*console.log(this);
       emailjs.sendForm('service_jigdj2r', 'template_il6k0gh', e.target, 'user_jCrnz8KGYvv1r02jdXO6Y')
           .then((result) => {
             console.log('SUCCESS!', result.status, result.text);
-            this.email = '';
-            this.snackbar = true;
           }, (error) => {
             console.log('FAILED...', error);
           });
+          */
     },
-  },
+    },
   computed: {
     nameState() {
       return this.email.length > 2 || this.email.length === 0  ? true : false
@@ -309,9 +344,6 @@ name: "Home",
 <style scoped>
 
 @media screen {
-  span {
-    color: #6081FA;
-  }
 
   h4  {
     color: white;
@@ -393,9 +425,8 @@ name: "Home",
     padding: 0 !important;
   }
 
-  .inputlabel {
-    margin-bottom: 5px;
-    text-align: left;
+  .input {
+    color: white;
   }
 
   .home {
