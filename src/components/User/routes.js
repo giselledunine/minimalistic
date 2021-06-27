@@ -19,6 +19,9 @@ export default [
     {
         path: '/login',
         name: 'Login',
+        meta: {
+            layout: "nothing"
+        },
         components : {
             default: () => import('@/components/Login')
         }
@@ -26,8 +29,22 @@ export default [
     {
         path: '/register',
         name: 'Register',
+        meta: {
+            layout: "nothing"
+        },
         components : {
-            default: () => import('@/components/Register')
+            default: () => import('@/views/Register')
+        }
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        meta: {
+            layout: "user",
+            requiredAuth: false,
+        },
+        components : {
+            default: () => import('@/views/Dashboard')
         }
     }
 ]

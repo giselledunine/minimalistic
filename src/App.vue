@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <div class="wrapper">
-<Header></Header>
-      <router-view></router-view>
-      <Footer></Footer>
+      <component :is="layout">
+        <router-view></router-view>
+      </component>
     </div>
   </div>
 </template>
 
 <script>
+import firebase from "firebase/app"
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-import Header from "@/components/layouts/Header";
-import Footer from "@/components/layouts/Footer";
+const default_layout = 'default';
 
 export default {
   name: 'App',
@@ -19,9 +21,19 @@ export default {
     Header,
     Footer
   },
+  computed: {
+    layout(){
+      return(this.$route.meta.layout || default_layout) + '-layout';
+    }
+  },
   created(){
-    console.log(process.env.VUE_APP_SB_APIKEY)
-    console.log(process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN)
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){
+        this.loggedIn = true
+      }else {
+        this.loggedIn = false
+      }
+    })
   },
   data(){
     return {
@@ -30,7 +42,8 @@ export default {
       prenom: "",
       email: "",
       empty: false,
-      valid: false
+      valid: false,
+      loggedIn: false,
     }
   },
   methods: {
@@ -71,7 +84,10 @@ export default {
   color: #B2B2B2;
   position: relative;
   min-height: 100vh;
-  padding-bottom: 3rem;
+}
+
+label {
+  color: #B2B2B2;
 }
 
 h1 {
@@ -146,7 +162,7 @@ p{
 .input {
   background-color: #232323 !important;
   border: #232323 !important;
-  color: white;
+  color: white !important;
 }
 
 .input:focus {

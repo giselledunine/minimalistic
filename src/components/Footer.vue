@@ -1,7 +1,7 @@
 <template>
   <b-navbar class="nav" toggleable="lg" type="dark">
     <b-link to="/">
-      <img src="./../../assets/img/minimalistic-white.png" alt="logo" height="70px">
+      <img src="../assets/img/minimalistic-white.png" alt="logo" height="70px">
     </b-link>
 
     <b-collapse class="menu" id="nav-collapse" is-nav left>

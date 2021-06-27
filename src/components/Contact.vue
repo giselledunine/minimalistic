@@ -70,7 +70,7 @@ name: "Contact",
             name: `${this.firstname} ${this.lastname}`,
             email: this.email,
           },
-          to: [{email: 'sophia.hmamouche@outlook.com'}],
+          to: [{email: 'pegasus.agencyy@gmail.com'}],
           subject: this.subject,
           textContent: this.message,
         }, {

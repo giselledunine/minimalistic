@@ -6,8 +6,10 @@ import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 import UserRoutes from "./components/User/routes";
 import axios from 'axios';
 import vuetify from "@/plugins/vuetify";
+import VueCookies from 'vue-cookies';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app";
+import 'firebase/firestore';
 // If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
 // import * as firebase from "firebase/app"
 
@@ -31,6 +33,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    meta: {requiredAuth: false},
     // component: Home
     components: {
       default: () => import(/* webpackChunkName: "home" */ "./views/Home"),
@@ -40,20 +43,15 @@ const routes = [
   {
     path: "/apropos",
     name: "Apropos",
+    meta: {requiredAuth: false},
     components: {
       default: () => import(/* webpackChunkName: "home" */ "./views/Apropos"),
     },
   },
   {
-    path: "/projets",
-    name: "Projets",
-    components: {
-      default: () => import(/* webpackChunkName: "home" */ "./views/Projets"),
-    },
-  },
-  {
     path: "/blog",
     name: "Blog",
+    meta: {requiredAuth: false},
     components: {
       default: () => import(/* webpackChunkName: "home" */ "./views/Blog"),
     },
@@ -61,6 +59,7 @@ const routes = [
   {
     path: "/mentionlegales",
     name: "Mentions Légales",
+    meta: {requiredAuth: false},
     components: {
       default: () =>
         import(/* webpackChunkName: "users" */ "@/views/Mentionlegales"),
@@ -69,6 +68,7 @@ const routes = [
   {
     path: "/contact",
     name: "Contact",
+    meta: {requiredAuth: false},
     components: {
       default: () =>
           import(/* webpackChunkName: "users" */ "@/components/Contact"),
@@ -77,11 +77,22 @@ const routes = [
   {
     path: "/newsletter/:email", // pas de suite, donc fin de l'[A6]  = lyon
     name: "Newsletter",
+    meta: {requiredAuth: false},
     components: {
       default: () =>
           import(/* webpackChunkName: "users" */ "@/views/Newsletter"),
     },
   },
+  {
+    path: "/mentors", // pas de suite, donc fin de l'[A6]  = lyon
+    name: "Mentors",
+    meta: {requiredAuth: true},
+    components: {
+      default: () =>
+          import(/* webpackChunkName: "users" */ "@/views/Mentors"),
+    },
+  },
+  { path: '*', redirect: '/' },
   ...UserRoutes,
 ];
 const router = new VueRouter({
@@ -106,6 +117,29 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+db.settings({timestampsInSnapshots: true})
+export {db};
+
+Vue.use(VueCookies);
+
+router.beforeEach((to, from, next) => {
+  const requiredAuth = to.matched.some((record) => record.meta.requiredAuth);
+  const isAuthenticated = firebase.auth().currentUser;
+  if (requiredAuth && !isAuthenticated) {
+    next("/login");
+  }else {
+    next();
+  }
+});
+
+import Default from "@/layout/Default";
+import Nothing from '@/layout/Nothing';
+import User from '@/layout/User';
+
+Vue.component('default-layout', Default);
+Vue.component('nothing-layout', Nothing);
+Vue.component('user-layout', User);
 
 new Vue({
   vuetify,
