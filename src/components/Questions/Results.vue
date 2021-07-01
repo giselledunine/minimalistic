@@ -1,19 +1,13 @@
 <template>
-<div>
-  <slot />
-</div>
+<h1>Résultats</h1>
 </template>
 
 <script>
 export default {
-  name: "Nothing"
+name: "Results"
 }
 </script>
 
 <style scoped>
-
-.no-padding {
-  padding: 0 !important;
-}
 
 </style>

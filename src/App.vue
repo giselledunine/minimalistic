@@ -12,6 +12,7 @@
 import firebase from "firebase/app"
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import {mapActions} from 'vuex';
 
 const default_layout = 'default';
 
@@ -25,6 +26,9 @@ export default {
     layout(){
       return(this.$route.meta.layout || default_layout) + '-layout';
     }
+  },
+  mounted(){
+    this.setUser();
   },
   created(){
     firebase.auth().onAuthStateChanged(user => {
@@ -47,6 +51,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setUser']),
     connect(){
       if (this.prenom === "" && this.nom === "" && this.email === "") {
         this.empty = true
@@ -90,6 +95,10 @@ label {
   color: #B2B2B2;
 }
 
+p {
+  font-size: 1.1rem;
+}
+
 h1 {
   color: white;
   font-weight: 700 !important;
@@ -111,7 +120,7 @@ h3 {
   margin: 0 !important;
 }
 
-span {
+.span {
   color: #6081FA;
 }
 

@@ -1,11 +1,14 @@
 <template>
 <div>
   <h1>Mon suivi</h1>
+  <p>{{user.lastname}}</p>
+  <router-view></router-view>
 </div>
 </template>
 
 <script>
 import firebase from 'firebase/app';
+import {mapGetters} from 'vuex';
 
 export default {
 name: "Dashboard",
@@ -13,6 +16,9 @@ name: "Dashboard",
   return {
     loggedIn : false,
   }
+  },
+  computed: {
+    ...mapGetters(['user'])
   },
   created(){
     firebase.auth().onAuthStateChanged(user => {

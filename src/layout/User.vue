@@ -7,7 +7,7 @@
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title class="text-h6">
-                Nathalie
+                {{ user.firstname }} {{ user.lastname }}
               </v-list-item-title>
               <v-list-item-subtitle>
                 Premium
@@ -108,8 +108,18 @@
 
 <script>
 import Header from "@/components/Header";
+import {mapGetters} from 'vuex'
+
 export default {
   name: "User",
+  data(){
+    return {
+      group: null,
+    }
+  },
+  computed: {
+    ...mapGetters(['user']),
+  },
   components: {
     Header,
   }

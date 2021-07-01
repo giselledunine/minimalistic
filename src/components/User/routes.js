@@ -41,10 +41,57 @@ export default [
         name: 'Dashboard',
         meta: {
             layout: "user",
-            requiredAuth: false,
+            requiredAuth: true,
         },
         components : {
             default: () => import('@/views/Dashboard')
         }
+    },
+    {
+        path: '/questions',
+        name: 'Questions',
+        meta: {
+            layout: "nothing",
+            requiredAuth: false,
+        },
+        components : {
+            default: () => import('@/views/Questions')
+        },
+        children: [{
+            path: 'pret-a-porter',
+            name: "pret-a-porter",
+            meta: {
+                layout: "nothing",
+                requiredAuth: false,
+            },
+            components: {
+                default: () => import('@/components/Questions/PretAPorter')
+            }
+        },
+            {
+                path: 'tri-sentimental',
+                name: "tri-sentimental",
+                meta: {
+                    layout: "nothing",
+                    requiredAuth: false,
+
+                },
+                components: {
+                    default: () => import('@/components/Questions/TriSentimental')
+                }
+            },
+            {
+                path: 'results',
+                name: "results",
+                meta: {
+                    layout: "nothing",
+                    requiredAuth: false,
+
+                },
+                components: {
+                    default: () => import('@/components/Questions/Results')
+                }
+            }
+        ]
     }
 ]

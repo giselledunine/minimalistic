@@ -141,9 +141,16 @@ Vue.component('default-layout', Default);
 Vue.component('nothing-layout', Nothing);
 Vue.component('user-layout', User);
 
-new Vue({
-  vuetify,
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+let app;
+
+firebase.auth().onAuthStateChanged((user) => {
+  if(!app) {
+  new Vue({
+    vuetify,
+    router,
+    store,
+    render: (h) => h(App),
+  }).$mount("#app");
+
+}
+})
