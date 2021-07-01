@@ -55,33 +55,35 @@
           ></b-form-textarea>
         </v-col>
         <v-col cols="12">
-          <label for="age">Selon vous, dans quel(s) domaine(s) aimeriez-vous être accompagné ?</label> <br/>
-          <v-chip
-              v-for="(chip, idx) in chips"
-              :key="idx"
-              v-if="chip.value"
-              class="chip"
-              close
-              label
-              dark
-              color="#6081FA"
-              text-color="#ffffff"
-              @click:close="removeChip(idx,chip.link)"
-          >{{chip.name}}
-          </v-chip>
+          <label for="age">Selon vous, dans quel(s) domaine(s) aimeriez-vous être accompagné ?</label>
         </v-col>
-        <v-col cols="12">
-          <v-chip
-              class="chip"
-              v-for="(chip, idx) in chips"
-              :key="idx"
-              v-if="!chip.value"
-              label
-              dark
-              @click="addChip(idx,chip.link)"
-          >
-            {{ chip.name }}
-          </v-chip>
+        <v-col cols="12" class="flex">
+          <div v-for="(chip, idx) in chips" :key="idx">
+            <v-chip
+                class="chip"
+                close
+                label
+                dark
+                v-if="chip.value"
+                color="#6081FA"
+                text-color="#ffffff"
+                @click:close="removeChip(idx,chip.link)"
+            >{{chip.name}}
+            </v-chip>
+          </div>
+        </v-col>
+        <v-col cols="12" class="flex">
+          <div v-for="(chip, idx) in chips" :key="idx">
+            <v-chip
+                class="chip"
+                label
+                color="#B2B2B2"
+                v-if="!chip.value"
+                @click="addChip(idx,chip.link)"
+            >
+              {{ chip.name }}
+            </v-chip>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -178,6 +180,10 @@ name: "Questions",
 
 .chip {
   margin: 0.5rem;
+}
+
+.flex {
+  display: flex;
 }
 
 .link {
