@@ -1,6 +1,6 @@
 <template>
   <div class="questions">
-    <v-container v-if="!main">
+    <v-container class="progress" v-if="!main">
       <v-row>
         <v-col v-for="(question, idx) in answers.questions" :key="idx">
           <v-progress-linear
@@ -11,8 +11,9 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-container v-if="main">
+    <v-container class="form" v-if="main">
       <h1>Aidez-nous à choisir le <span class="span">mentor idéal</span> pour vous !</h1>
+      <p>Ce formulaire nous permet de trouver le mentor qui vous convient pour chaque thème ! Chaque thème sera noté sur 100.</p>
       <v-row >
         <v-col cols="12" sm="6">
           <label for="age">Âge</label>
@@ -34,12 +35,12 @@
           <label for="age">Pourquoi voulez-vous être minimaliste ?</label>
           <b-form-textarea
               class="margin-bottom input"
+              id="whyMinimalist"
               size="large"
               v-model="answers.whyMinimalist"
-              id="whyMinimalist"
               placeholder="Décrivez..."
               rows="4"
-              max-rows="8"
+              max-rows="2"
           ></b-form-textarea>
         </v-col>
         <v-col cols="12">
@@ -51,44 +52,52 @@
               id="whyMinimalist"
               placeholder="Décrivez..."
               rows="4"
-              max-rows="8"
           ></b-form-textarea>
         </v-col>
         <v-col cols="12">
           <label for="age">Selon vous, dans quel(s) domaine(s) aimeriez-vous être accompagné ?</label>
         </v-col>
-        <v-col cols="12" class="flex">
+        <v-col cols="12" class="flex" v-if="answers.questions.length > 0">
           <div v-for="(chip, idx) in chips" :key="idx">
-            <v-chip
-                class="chip"
-                close
-                label
-                dark
-                v-if="chip.value"
-                color="#6081FA"
-                text-color="#ffffff"
-                @click:close="removeChip(idx,chip.link)"
-            >{{chip.name}}
-            </v-chip>
+            <v-scale-transition>
+              <v-chip
+                  transition="fade-transition"
+                  class="chip"
+                  close
+                  label
+                  dark
+                  v-if="chip.value"
+                  color="#6081FA"
+                  text-color="#ffffff"
+                  @click:close="removeChip(idx,chip.link)"
+              >{{chip.name}}
+              </v-chip>
+            </v-scale-transition>
           </div>
         </v-col>
         <v-col cols="12" class="flex">
           <div v-for="(chip, idx) in chips" :key="idx">
-            <v-chip
-                class="chip"
-                label
-                color="#B2B2B2"
-                v-if="!chip.value"
-                @click="addChip(idx,chip.link)"
-            >
-              {{ chip.name }}
-            </v-chip>
+            <v-scale-transition>
+              <v-chip
+                  transition="fade-transition"
+                  class="chip"
+                  label
+                  color="#B2B2B2"
+                  v-if="!chip.value"
+                  @click="addChip(idx,chip.link)"
+              >
+                {{ chip.name }}
+              </v-chip>
+            </v-scale-transition>
+            
           </div>
         </v-col>
       </v-row>
     </v-container>
     <v-container transition="slide-x-reverse-transition">
-      <router-view></router-view>
+      <v-fade-transition>
+        <router-view :forms="answers.questions" :count="count"></router-view>
+      </v-fade-transition>
     </v-container>
 
     <v-container v-if="answers.questions.length > 0 && end === false">
@@ -101,6 +110,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
 name: "Questions",
   data(){
@@ -135,7 +146,11 @@ name: "Questions",
     ]
   }
   },
+  mounted() {
+    this.setScores()
+  },
   methods: {
+  ...mapActions(['setScores']),
     nextForm(count){
       if(this.main === true){
         console.log(this.answers.questions.length)
@@ -150,12 +165,10 @@ name: "Questions",
       if(count + 1 === this.answers.questions.length){
         this.end = true
       }
-      if(count + 1 !== this.answers.questions.length){
         this.count = this.count + 1
-      }
     },
     endForm(){
-      this.answers.questions[this.count+1].progress = 100
+      this.answers.questions[this.count-1].progress = 100
     },
     async addChip(idx, route){
         const question = {route: route, progress: 0}
@@ -178,6 +191,24 @@ name: "Questions",
 
 <style scoped>
 
+p {
+  color: #B2B2B2;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.progress {
+  position: fixed;
+  max-width: 1000px;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: black;
+}
+
 .chip {
   margin: 0.5rem;
 }
@@ -198,6 +229,12 @@ name: "Questions",
 
 .container {
   text-align: left;
+}
+
+.form {
+  margin: 0 auto;
+  padding: 3rem;
+  max-width: 1000px;
 }
 
 .questions {

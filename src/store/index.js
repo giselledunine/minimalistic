@@ -7,7 +7,8 @@ const store = new Vuex.Store({
         user: {
             lastname: '',
             firstname: ''
-        }
+        },
+        scores: [],
     },
     mutations: {
       updateUser (state,payload) {
@@ -18,7 +19,19 @@ const store = new Vuex.Store({
         setUser (state){
           const jsonObject = JSON.parse(localStorage.getItem('user'))
           return state.user = jsonObject;
-        }
+        },
+        updateScores (state, payload) {
+            localStorage.setItem('scores', JSON.stringify(payload))
+            return state.scores= payload;
+        },
+        updateScore (state, payload, idx) {
+            localStorage.setItem('scores', JSON.stringify([payload]))
+            return state.scores[idx].score = payload
+        },
+        setScores (state){
+            const jsonObject = JSON.parse(localStorage.getItem('scores'))
+            return state.scores = jsonObject;
+        },
     },
     actions: {
         updateUser(context, payload){
@@ -29,10 +42,23 @@ const store = new Vuex.Store({
             if(localStorage.getItem('user')){
                 context.commit('setUser');
             }
-        }
+        },
+        updateScores(context, payload){
+            context.commit('updateScores', payload);
+        },
+        updateScore(context, payload, idx){
+          context.commit('updateScore', payload, idx);
+        },
+        setScores(context){
+            if(localStorage.getItem('scores')){
+                context.commit('setScores');
+            }
+        },
     },
     getters: {
-        user: state => state.user}
+        user: state => state.user,
+        scores: state => state.scores
+    }
 })
 
 export default store

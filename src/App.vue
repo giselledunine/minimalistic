@@ -29,6 +29,7 @@ export default {
   },
   mounted(){
     this.setUser();
+    this.setScores();
   },
   created(){
     firebase.auth().onAuthStateChanged(user => {
@@ -52,6 +53,7 @@ export default {
   },
   methods: {
     ...mapActions(['setUser']),
+    ...mapActions(['setScores']),
     connect(){
       if (this.prenom === "" && this.nom === "" && this.email === "") {
         this.empty = true

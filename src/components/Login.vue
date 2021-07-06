@@ -1,7 +1,6 @@
 <template>
   <div>
 <h1 class="show"><span class="span">Content de vous revoir</span>, vous nous avez manqué !</h1>
-    <p>{{user.lastname}}</p>
     <div class="login">
       <div class="img">
       </div>
@@ -16,7 +15,7 @@
       </v-snackbar>
       <div>
         <div class="form">
-          <h1 class="hidden"><span>Content de vous revoir</span>, vous nous avez manqué !</h1>
+          <h1 class="hidden"><span class="span">Content de vous revoir</span>, vous nous avez manqué !</h1>
           <form @submit.prevent="login">
             <v-container class="no-padding">
               <v-row no-gutters class="margin-bottom">
@@ -69,7 +68,7 @@
 <script>
 import firebase from "firebase/app"
 import {db} from './../main'
-import {mapGetters, mapActions} from 'vuex'
+import {mapActions} from 'vuex'
 
 export default {
 name: "Login",
@@ -81,9 +80,6 @@ name: "Login",
     typeInput: 'password',
     wrong: false,
   }
-  },
-  computed: {
-    ...mapGetters(['user'])
   },
   methods:{
   ...mapActions(['updateUser']),
@@ -127,7 +123,6 @@ name: "Login",
 
   h1 {
     padding-top: 2rem;
-    font-size: 1.5rem !important;
   }
 
   .show {
@@ -136,6 +131,8 @@ name: "Login",
 
   .hidden {
     display: none;
+    font-size: 2.5rem !important;
+    text-align: left;
   }
 
   label {
@@ -174,6 +171,7 @@ name: "Login",
 
     .form {
       margin-left: 3rem;
+      width: 70%;
     }
 
     .show {
