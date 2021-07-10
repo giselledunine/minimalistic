@@ -117,7 +117,7 @@
     <div class="div3">
       <div class="img">
         <v-lazy>
-          <img class="borderImg" id="img2" src="./../assets/img/profil.jpg" alt="img">
+          <img class="borderImg" id="img2" width="100%" src="./../assets/img/profil.jpg" alt="img">
         </v-lazy>
       </div>
       <div class="home">
@@ -221,7 +221,7 @@
         <p>Des formules adaptées à vos besoins</p>
         <v-container>
           <v-row justify="center">
-            <v-col cols="5">
+            <v-col cols="12" sm="5">
               <v-card class="prices">
                 <h4>Essentiel</h4>
                 <h3 class="number">9,99 €<span class="details">par mois (7 jours d'essai gratuit)</span></h3>
@@ -278,7 +278,7 @@
                 <b-button class="btn">Commencer</b-button>
               </v-card>
             </v-col>
-            <v-col cols="5">
+            <v-col cols="12" sm="5">
               <v-card class="prices">
                 <v-row>
                   <v-col cols="8">
