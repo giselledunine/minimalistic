@@ -1,7 +1,7 @@
 <template>
   <div class="questionnaire">
     <v-container>
-      <h1>Prêt à Porter</h1>
+      <h1>Design d'intérieur</h1>
       <v-card v-for="(question, idx) in questions" :key="idx" dark class="card">
         <v-container>
           <p>{{question.title}}</p>
@@ -63,35 +63,35 @@ name: "PretAPorter",
       totalScore: 10,
       first: true,
       questions: [
-        {title: 'Combien de paires de chaussures disposez-vous ?',
+        {title: 'Vous préférez vivre ?',
           questions: [
-            {text: 'Moins de 5'},
-            {text: 'Entre 6 et 10'},
-            {text: 'Honnêtement, je ne compte pas tellement j’en ai trop'},
+            {text: 'En campagne', value: 1},
+            {text: 'En banlieue', value: 1},
+            {text: 'En ville', value: 1},
           ]},
-        {title: 'Comment décririez-vous votre manière de faire du shopping ?',
+        {title: 'Avez-vous le sentiment d’avoir trop d’objets chez vous ?',
           questions: [
-            {text: 'Je ne fais pas de shopping'},
-            {text: 'Mes achats sont toujours réfléchis'},
-            {text: 'Je fais des achats compulsifs'},
+            {text: 'J’ai le nécessaire', value: 1},
+            {text: 'J’ai beaucoup d’objet “au cas où”', value: 1},
+            {text: 'J’ai beaucoup d’objet pour être sûr de manquer de rien', value: 1},
           ]},
-        {title: 'Vous n’avez plus de chaussettes propres. Que faites-vous ?',
+        {title: 'Quelle est la proportion d’objets que vous utilisez chaque jour ou chaque semaine ?',
           questions: [
-            {text: 'Je ne suis jamais à court de chaussettes propres mais je fais ma lessive à temps'},
-            {text: 'Je remet mes chaussettes sales'},
-            {text: 'J’achète de nouvelles paires de chaussettes'},
+            {text: 'La majorité de mes objets : je possède surtout le stricte nécessaire', value: 1},
+            {text: 'Une grande partie : la plupart des objets que je possède sont d’ordre utilitaires', value: 1},
+            {text: 'Une petite partie : j’utilise à la fois les objets essentiels mais je possède également beaucoup d’objets moins utiles', value: 1},
           ]},
-        {title: 'Achetez-vous des objets similaires (même produits de beauté, objets etc.) ?',
+        {title: 'Vous sentez-vous oppressé par tous ces objets ?',
           questions: [
-            {text: 'Non, je suis conscient de tout ce que je possède'},
-            {text: 'Oui, mais je pense que cela prouve que je sais ce que j\'aime. Et je finis toujours par tout utiliser !'},
-            {text: 'Oui, et c’est très embarrassant'},
+            {text: 'Non je suis bien', value: 1},
+            {text: 'Pas vraiment', value: 1},
+            {text: 'Oui, énormément', value: 1},
           ]},
-        {title: 'À quand remonte la dernière fois que vous avez ramassé/trié toutes vos affaires ?',
+        {title: 'Avez-vous le sentiment de passer trop de temps à nettoyer et ranger votre maison ?',
           questions: [
-            {text: 'Je le fais périodiquement'},
-            {text: "Lorsque j’ai déménagé, j'ai fait une brocante, avant de partir en vacances"},
-            {text: 'Je me souviens plus de la dernière fois...'},
+            {text: 'Chez moi j’ai seulement le nécessaire, je fais le ménage rapidement', value: 1},
+            {text: "Oui j’aimerais prendre moins de temps pour ranger ma maison", value: 1},
+            {text: 'J’ai l’impression de de tout le temps ranger ma maison', value: 1},
           ]},
       ],
     }
@@ -100,7 +100,7 @@ name: "PretAPorter",
     this.finalScore = this.questionsScores.reduce((acc, curr) => { return acc + curr.score}, 0)/this.totalScore * 100
     const final = this.questionsScores.reduce((acc, curr) => { return acc + curr.score}, 0)/this.totalScore * 100
     const score = {
-      category: 'pret-a-porter',
+      category: 'design-interieur',
       score: final
     }
     if(this.first){

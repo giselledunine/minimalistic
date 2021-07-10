@@ -2,12 +2,12 @@
 <v-container>
   <h1>Vos résultats</h1>
   <v-row>
-    <v-col cols="4" v-for="(form, idx) in forms" :key="idx">
+    <v-col cols="12" sm="4" v-for="(form, idx) in forms" :key="idx">
       <v-card v-if="match(form)" justify="center" class="card" dark>
         <v-progress-circular
             :rotate="90"
             :size="100"
-            :width="15"
+            :width="10"
             :value="scores.find(el => el.category === form.class).score"
             :color="form.color"
         >
@@ -40,14 +40,14 @@
     <v-tab-item v-for="(score, idx) in scores" :key="idx" background-color="#000000">
       <v-container fluid>
         <v-row>
-          <v-col cols="4" v-for="(mentor, idx) in mentors.filter(el=> el.specialty === score.category)" :key="idx">
+          <v-col cols="12" sm="4" v-for="(mentor, idx) in mentors.filter(el=> el.specialty === score.category)" :key="idx">
             <v-card class="mentors">
               <v-img
                   height="190"
                   src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
               ></v-img>
               <v-card-title>{{mentor.firstname}} {{mentor.lastname}}</v-card-title>
-              <v-card-text>Mentor en {{ mentor.specialty }}</v-card-text>
+              <v-card-text>Mentor en {{ mentor.specialtyName }}</v-card-text>
               <v-card-text>
                 <v-chip label color="#6081FA">
                   Super Mentor
@@ -59,7 +59,7 @@
                     half-icon="mdi-star-halffull"
                     length="5"
                     size="14"
-                    value="3"
+                    :value="3"
                 ></v-rating>
               </v-card-text>
             </v-card>
@@ -69,12 +69,18 @@
     </v-tab-item>
   </v-tabs-items>
 
+  <v-card dark class="cardAdd">
+    <h2>Rejoignez la communauté Minimalistics</h2>
+    <p>Intégrez la communauté de mentors et d’apprentis minimalistes</p>
+    <button class="Facebook">Rejoignez le groupe Facebook</button>
+  </v-card>
+
 </v-container>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
-import {db} from './../../main'
+import {db} from '../main'
 
 export default {
 name: "Results",
@@ -86,36 +92,36 @@ name: "Results",
         {
           name: 'Pret-à-porter',
           color: '#60FAFA',
-          link: '/pret-a-porter',
+          link: '/questions/pret-a-porter',
           class: 'pret-a-porter'
         },
         {
           name: 'Alilmentation',
-          link: '/alimentation',
+          link: '/questions/alimentation',
           color: '#FAD619',
           class: 'alimentation'
         },
         {
           name: "Design d'intérieur",
-          link: '/design-interieur',
+          link: '/questions/design-interieur',
           color: '#6DA5E7',
           class: 'design-interieur'
         },
         {
           name: 'Tri sentimental',
-          link: '/tri-sentimental',
+          link: '/questions/tri-sentimental',
           color: '#FA9760',
           class: 'tri-sentimental'
         },
         {
           name: 'Organisation / désemcombrement',
-          link: '/organisation',
+          link: '/questions/desencombrement',
           color: '#A58FFF',
-          class: 'organisation'
+          class: 'desencombrement'
         },
         {
           name: 'Budjet et Finance',
-          link: '/budget-finance',
+          link: '/questions/budget-finance',
           color: '#FA6069',
           class: 'budget-finance'
         }
@@ -156,7 +162,8 @@ h1 {
 }
 
 h2 {
-  margin: 2rem 0;
+  margin: 3rem 0 1rem 0;
+  text-align: left;
 }
 
 .card {
@@ -170,11 +177,31 @@ h2 {
 
 .mentors {
   border-radius: 8px;
+  text-align: left;
 }
 
+.cardAdd {
+  background-color: #6081FA;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 4rem;
+}
+
+.cardAdd h2 {
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 8px 0;
+}
+
+.cardAdd p {
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
 
 .cardBlocked {
-  background-color: #616161 !important;
+  background-color: #383838 !important;
   display: flex;
   flex-direction: column;
   padding: 2rem;
@@ -206,10 +233,22 @@ p {
 
 .btn {
   margin: 0;
+  background-color: white !important;
+  border-radius: 8px !important;
+}
+
+.Facebook {
+  margin: 0;
+  color: black;
+  font-size: 1rem;
+  padding: 8px 32px;
+  background-color: white !important;
+  border-radius: 8px !important;
 }
 
 .card .title {
   margin: 1rem;
+  font-family: Lato, sans-serif !important;
 }
 
 .v-tabs {
@@ -232,12 +271,16 @@ p {
   color: #FA9760;
 }
 
-.organisation {
+.desencombrement {
   color: #A58FFF;
 }
 
 .budget-finance {
   color: #FA6069;
+}
+
+.container {
+  background-color: black !important;
 }
 
 </style>

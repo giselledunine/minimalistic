@@ -23,7 +23,7 @@ export default [
             layout: "nothing"
         },
         components : {
-            default: () => import('@/components/Login')
+            default: () => import('@/views/Login')
         }
     },
     {
@@ -43,9 +43,6 @@ export default [
             layout: "user",
             requiredAuth: true,
         },
-        components : {
-            default: () => import('@/views/Dashboard')
-        }
     },
     {
         path: '/questions',
@@ -81,17 +78,65 @@ export default [
                 }
             },
             {
-                path: 'results',
-                name: "results",
+                path: 'alimentation',
+                name: "alimentation",
                 meta: {
                     layout: "nothing",
                     requiredAuth: false,
 
                 },
                 components: {
-                    default: () => import('@/components/Questions/Results')
+                    default: () => import('@/components/Questions/Alimentation')
                 }
-            }
+            },
+            {
+                path: 'design-interieur',
+                name: "design-interieur",
+                meta: {
+                    layout: "nothing",
+                    requiredAuth: false,
+
+                },
+                components: {
+                    default: () => import('@/components/Questions/DesignInterieur')
+                }
+            },
+            {
+                path: 'desencombrement',
+                name: "desencombrement",
+                meta: {
+                    layout: "nothing",
+                    requiredAuth: false,
+
+                },
+                components: {
+                    default: () => import('@/components/Questions/Desencombrement')
+                }
+            },
+            {
+                path: 'budget-finance',
+                name: 'budget-finance',
+                meta: {
+                    layout: "nothing",
+                    requiredAuth: false,
+
+                },
+                components: {
+                    default: () => import('@/components/Questions/BudgetFinance')
+                }
+            },
         ]
+    },
+    {
+        path: '/results',
+        name: "results",
+        meta: {
+            layout: "nothing",
+            requiredAuth: false,
+
+        },
+        components: {
+            default: () => import('@/components/Results')
+        }
     }
 ]

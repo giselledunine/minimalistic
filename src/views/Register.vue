@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="show"><span>Bienvenue</span> sur Minimalistic !</h1>
+    <h1 class="show"><span class="span">Bienvenue</span> sur Minimalistic !</h1>
     <div class="login">
       <div class="img">
       </div>
@@ -11,11 +11,11 @@
           absolute
           bottom
       >
-        Le mot de passe ou l'adresse mail est incorrecte
+        Une erreur est survenue
       </v-snackbar>
       <div>
         <div class="form">
-          <h1 class="hidden"><span>Bienvenue</span> sur Minimalistic !</h1>
+          <h1 class="hidden"><span class="span">Bienvenue</span> sur Minimalistic !</h1>
           <form @submit.prevent="register">
             <v-container class="no-padding">
               <v-row no-gutters class="margin-bottom">
@@ -45,11 +45,11 @@
                     <v-row no-gutters>
                       <v-col cols="12" sm="6" class="padding-right">
                         <label for="lastname">Nom</label>
-                        <b-form-input id="lastname" required type="text" name="lastname" class="input" v-model="lastname" placeholder="Nom"></b-form-input>
+                        <b-form-input id="lastname" type="text" name="lastname" class="input" v-model="user.lastname" placeholder="Nom"></b-form-input>
                       </v-col>
                       <v-col  cols="12" sm="6">
                         <label for="firstname">Prénom</label>
-                        <b-form-input id="firstname" required type="text" name="fistname" class=" input" v-model="firstname" placeholder="Prénom"></b-form-input>
+                        <b-form-input id="firstname" type="text" name="fistname" class=" input" v-model="user.firstname" placeholder="Prénom"></b-form-input>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -105,17 +105,17 @@
 
 <script>
 import firebase from "firebase/app";
-import {mapState, mapActions} from 'vuex'
+import {db} from '@/main'
+import {mapActions} from 'vuex'
 
 export default {
-  name: "Login",
-  computed: {
-    ...mapState(['user']),
-  },
+  name: "Register",
   data(){
     return {
-      lastname: '',
-      firstname: '',
+      user: {
+        lastname: '',
+        firstname: '',
+      },
       imageURL : null,
       image: null,
       email: '',
@@ -150,18 +150,18 @@ export default {
       }
     },
     async register(){
-      try {
-        const user = await firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((res) => {
+        console.log('incription')
+        const user = await firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((res) => {
           console.log(res);
-          this.updateUser(res.user.email)
-        })
-        console.log(user)
-        this.$cookies.set('loggedIn','true');
-        this.$router.replace({name: "Dashboard"});
-      }catch(err){
-        console.log(err)
-        this.wrong = true
-      }
+          const userRef = db.collection('users').doc(res.user.uid)
+          userRef.set(this.user).then(() => {
+            console.log("Frank created");
+          }).catch(err => console.log(err));
+          this.updateUser(this.user)
+          console.log(user)
+          this.$cookies.set('loggedIn','true');
+          this.$router.replace({name: "Questions"});
+        }).catch(err => console.log(err))
     }
   }
 }
@@ -268,7 +268,7 @@ a:hover {
     .img {
       width: 40%;
       height: 100vh;
-      background-image: url("./../assets/img/loginImage.png");
+      background-image: url("../assets/img/loginImage.png");
       background-size: contain;
 
     }

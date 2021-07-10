@@ -6,12 +6,18 @@
         <v-navigation-drawer class="menu" permanent>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="text-h6">
-                {{ user.firstname }} {{ user.lastname }}
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                Premium
-              </v-list-item-subtitle>
+              <div class="userId">
+                <v-avatar
+                    color="#6081FA"
+                    size="70"
+                >
+                  <span class="white--text text-h5">AM</span>
+                </v-avatar>
+                <p>{{ user.firstname }} {{ user.lastname }}s</p>
+                <v-chip label text-color="#ffffff" color="#6081FA">
+                  Premium
+                </v-chip>
+              </div>
             </v-list-item-content>
           </v-list-item>
 
@@ -98,9 +104,11 @@
           </v-list>
         </v-navigation-drawer>
       </div>
-      <div>
-        <slot />
-      </div>
+      <v-fade-transition>
+        <div v-if="group === 0" class="fullwidth">
+          <Dashboard/>
+        </div>
+      </v-fade-transition>
     </div>
 
   </div>
@@ -108,13 +116,14 @@
 
 <script>
 import Header from "@/components/Header";
+import Dashboard from "@/views/Dashboard";
 import {mapGetters} from 'vuex'
 
 export default {
   name: "User",
   data(){
     return {
-      group: null,
+      group: 0,
     }
   },
   computed: {
@@ -122,6 +131,7 @@ export default {
   },
   components: {
     Header,
+    Dashboard,
   }
 }
 </script>
@@ -132,6 +142,20 @@ p {
   text-align: left;
   margin: 2rem 0 0 0;
   color: #B2B2B2;
+}
+
+.fullwidth {
+  width: 70%;
+  text-align: left;
+}
+
+.userId {
+  text-align: left;
+}
+
+.userId p {
+  color: white;
+  margin: 1rem 0;
 }
 
 .flex {

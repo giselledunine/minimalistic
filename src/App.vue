@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <div class="wrapper">
-      <component :is="layout">
-        <router-view></router-view>
-      </component>
-    </div>
+    <v-app>
+      <div class="wrapper">
+        <component :is="layout">
+          <router-view></router-view>
+        </component>
+      </div>
+    </v-app>
   </div>
 </template>
 
@@ -81,7 +83,7 @@ export default {
 
 <style lang="css">
 #app {
-  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-family: Lato, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -130,13 +132,13 @@ h3 {
   background-color: #6081FA !important;
   border: none !important;
   font-family: Lato, sans-serif;
-  color: black !important;;
+  color: white !important;;
   margin-left: 1rem;
   padding: 0.5rem 2rem !important;
 }
 .btn:hover{
   background-color: #2F5AF8 !important;
-  color: black !important;
+  color: white !important;
 }
 
 .btnConnect {
@@ -190,10 +192,11 @@ p{
 
 .wrapper {
   height: fit-content;
+  padding-bottom: 7rem;
 }
 
 .footer {
-  padding: 1rem;
+  padding: 2rem;
   background-color: #000000;
   }
 </style>

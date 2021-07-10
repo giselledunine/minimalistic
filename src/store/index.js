@@ -6,7 +6,8 @@ const store = new Vuex.Store({
     state: { // data
         user: {
             lastname: '',
-            firstname: ''
+            firstname: '',
+            mentor: '',
         },
         scores: [],
     },
@@ -20,6 +21,12 @@ const store = new Vuex.Store({
           const jsonObject = JSON.parse(localStorage.getItem('user'))
           return state.user = jsonObject;
         },
+
+        updateMentor (state, payload) {
+            state.user.mentor = payload
+            return localStorage.setItem('user', JSON.stringify(state.user));
+        },
+
         updateScores (state, payload) {
             localStorage.setItem('scores', JSON.stringify(payload))
             return state.scores= payload;
@@ -43,12 +50,19 @@ const store = new Vuex.Store({
                 context.commit('setUser');
             }
         },
+
+        updateMentor(context, payload){
+            context.commit('updateMentor', payload);
+        },
+
         updateScores(context, payload){
             context.commit('updateScores', payload);
         },
+
         updateScore(context, payload, idx){
           context.commit('updateScore', payload, idx);
         },
+
         setScores(context){
             if(localStorage.getItem('scores')){
                 context.commit('setScores');

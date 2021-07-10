@@ -10,6 +10,7 @@ import VueCookies from 'vue-cookies';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app";
 import 'firebase/firestore';
+import 'firebase/storage';
 // If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
 // import * as firebase from "firebase/app"
 
@@ -92,6 +93,15 @@ const routes = [
           import(/* webpackChunkName: "users" */ "@/views/Mentors"),
     },
   },
+  {
+    path: "/mentor-profil/:id", // pas de suite, donc fin de l'[A6]  = lyon
+    name: "MentorsProfil",
+    meta: {requiredAuth: true},
+    components: {
+      default: () =>
+          import(/* webpackChunkName: "users" */ "@/views/MentorProfil"),
+    },
+  },
   { path: '*', redirect: '/' },
   ...UserRoutes,
 ];
@@ -120,6 +130,9 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 db.settings({timestampsInSnapshots: true})
 export {db};
+
+const storageRef = firebase.storage().ref();
+export {storageRef};
 
 Vue.use(VueCookies);
 

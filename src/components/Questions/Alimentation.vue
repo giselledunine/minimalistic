@@ -1,7 +1,7 @@
 <template>
   <div class="questionnaire">
     <v-container>
-      <h1>Prêt à Porter</h1>
+      <h1>Alimentation</h1>
       <v-card v-for="(question, idx) in questions" :key="idx" dark class="card">
         <v-container>
           <p>{{question.title}}</p>
@@ -63,35 +63,35 @@ name: "PretAPorter",
       totalScore: 10,
       first: true,
       questions: [
-        {title: 'Combien de paires de chaussures disposez-vous ?',
+        {title: 'Combien d’ustensiles de cuisine possédez-vous ?',
           questions: [
-            {text: 'Moins de 5'},
-            {text: 'Entre 6 et 10'},
-            {text: 'Honnêtement, je ne compte pas tellement j’en ai trop'},
+            {text: 'Moins de 5', value: 1},
+            {text: 'Entre 6 et 10', value: 1},
+            {text: 'Plus de 10', value: 1},
           ]},
         {title: 'Comment décririez-vous votre manière de faire du shopping ?',
           questions: [
-            {text: 'Je ne fais pas de shopping'},
-            {text: 'Mes achats sont toujours réfléchis'},
-            {text: 'Je fais des achats compulsifs'},
+            {text: 'Je possède le juste nécessaire, je n’ai pas de mal à consommer ce qu’il y a dans le réfrigérateur', value: 1},
+            {text: 'Je possède une quantité modérée mais il reste des aliments que j’ai du mal à terminer', value: 1},
+            {text: 'Il est plein à craquer, je n’arrive pas à tout manger !', value: 1},
           ]},
-        {title: 'Vous n’avez plus de chaussettes propres. Que faites-vous ?',
+        {title: 'Lorsque j’achète des produits alimentaires...',
           questions: [
-            {text: 'Je ne suis jamais à court de chaussettes propres mais je fais ma lessive à temps'},
-            {text: 'Je remet mes chaussettes sales'},
-            {text: 'J’achète de nouvelles paires de chaussettes'},
+            {text: 'Ce sont des produits bio (de la région)', value: 1},
+            {text: 'Ce sont des produits bruts ou en vrac (fruits, légumes, céréales,...), certains proviennent d’autres pays et en fonction des saison', value: 1},
+            {text: 'Ce sont des produits transformés contenant des additifs et des conservateurs', value: 1},
           ]},
-        {title: 'Achetez-vous des objets similaires (même produits de beauté, objets etc.) ?',
+        {title: 'Comment préparez-vous vos repas ?',
           questions: [
-            {text: 'Non, je suis conscient de tout ce que je possède'},
-            {text: 'Oui, mais je pense que cela prouve que je sais ce que j\'aime. Et je finis toujours par tout utiliser !'},
-            {text: 'Oui, et c’est très embarrassant'},
+            {text: 'Je prépare mes repas en fonction de ce que j’ai chez moi', value: 1},
+            {text: 'Généralement j’achète ce que la recette demande d’avoir', value: 1},
+            {text: 'Je préfère commander Uber Eat', value: 1},
           ]},
-        {title: 'À quand remonte la dernière fois que vous avez ramassé/trié toutes vos affaires ?',
+        {title: 'Combien de temps prenez-vous pour manger ?',
           questions: [
-            {text: 'Je le fais périodiquement'},
-            {text: "Lorsque j’ai déménagé, j'ai fait une brocante, avant de partir en vacances"},
-            {text: 'Je me souviens plus de la dernière fois...'},
+            {text: 'Moins de 10 minutes', value: 1},
+            {text: "Entre 11 et 45 minutes", value: 1},
+            {text: 'Plus de 45 minutes', value: 1},
           ]},
       ],
     }
@@ -100,7 +100,7 @@ name: "PretAPorter",
     this.finalScore = this.questionsScores.reduce((acc, curr) => { return acc + curr.score}, 0)/this.totalScore * 100
     const final = this.questionsScores.reduce((acc, curr) => { return acc + curr.score}, 0)/this.totalScore * 100
     const score = {
-      category: 'pret-a-porter',
+      category: 'alimentation',
       score: final
     }
     if(this.first){

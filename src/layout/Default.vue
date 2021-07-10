@@ -1,7 +1,7 @@
 <template>
 <div>
   <Header></Header>
-  <slot/>
+  <slot class="marginBottom"/>
   <Footer></Footer>
 </div>
 </template>
@@ -20,5 +20,9 @@ name: "Default",
 </script>
 
 <style scoped>
+
+.marginBottom {
+  margin-bottom: 3rem;
+}
 
 </style>

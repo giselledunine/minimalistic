@@ -1,7 +1,7 @@
 <template>
   <div class="questionnaire">
     <v-container>
-      <h1>Prêt à Porter</h1>
+      <h1>Désencombrement / Organisation</h1>
       <v-card v-for="(question, idx) in questions" :key="idx" dark class="card">
         <v-container>
           <p>{{question.title}}</p>
@@ -63,35 +63,35 @@ name: "PretAPorter",
       totalScore: 10,
       first: true,
       questions: [
-        {title: 'Combien de paires de chaussures disposez-vous ?',
+        {title: 'Est-ce que tout ce que vous possédez a une place précise ?',
           questions: [
-            {text: 'Moins de 5'},
-            {text: 'Entre 6 et 10'},
-            {text: 'Honnêtement, je ne compte pas tellement j’en ai trop'},
+            {text: 'Oui chaque chose à sa place !', value: 1},
+            {text: 'Non pas vraiment je me retrouve dans mon bazar...', value: 1},
+            {text: 'Non impossible de m’y retrouver', value: 1},
           ]},
-        {title: 'Comment décririez-vous votre manière de faire du shopping ?',
+        {title: 'Pour vous, le désencombrement est :',
           questions: [
-            {text: 'Je ne fais pas de shopping'},
-            {text: 'Mes achats sont toujours réfléchis'},
-            {text: 'Je fais des achats compulsifs'},
+            {text: 'Une partie de plaisir ! J’aime tout organiser !', value: 1},
+            {text: 'Ça ne me dérange pas, j’essaye de le faire 1 fois par an', value: 1},
+            {text: 'une corvée, je me retrouve pas dans tout ce bordel', value: 1},
           ]},
-        {title: 'Vous n’avez plus de chaussettes propres. Que faites-vous ?',
+        {title: 'C’était quand la dernière fois que vous avez fait le tri ?',
           questions: [
-            {text: 'Je ne suis jamais à court de chaussettes propres mais je fais ma lessive à temps'},
-            {text: 'Je remet mes chaussettes sales'},
-            {text: 'J’achète de nouvelles paires de chaussettes'},
+            {text: 'Je le fais périodiquement', value: 1},
+            {text: 'Lors de mon déménagement', value: 1},
+            {text: 'Ça fait tellement longtemps que je ne m’en souviens plus', value: 1},
           ]},
-        {title: 'Achetez-vous des objets similaires (même produits de beauté, objets etc.) ?',
+        {title: 'Combien de fois faites-vous le ménage ?',
           questions: [
-            {text: 'Non, je suis conscient de tout ce que je possède'},
-            {text: 'Oui, mais je pense que cela prouve que je sais ce que j\'aime. Et je finis toujours par tout utiliser !'},
-            {text: 'Oui, et c’est très embarrassant'},
+            {text: 'Au moins 1 fois par semaine', value: 1},
+            {text: 'Quand c’est nécessaire je le fais mais j’ai pas de jour précis.', value: 1},
+            {text: 'Seulement quand il y a du monde qui vient chez moi', value: 1},
           ]},
-        {title: 'À quand remonte la dernière fois que vous avez ramassé/trié toutes vos affaires ?',
+        {title: 'Vos papiers sont-ils rangés ?',
           questions: [
-            {text: 'Je le fais périodiquement'},
-            {text: "Lorsque j’ai déménagé, j'ai fait une brocante, avant de partir en vacances"},
-            {text: 'Je me souviens plus de la dernière fois...'},
+            {text: 'Oui, tout est classé dans des dossiers', value: 1},
+            {text: "Tout est rangé en vrac", value: 1},
+            {text: 'Je les lis ensuite je m’en débarrasse', value: 1},
           ]},
       ],
     }
@@ -100,7 +100,7 @@ name: "PretAPorter",
     this.finalScore = this.questionsScores.reduce((acc, curr) => { return acc + curr.score}, 0)/this.totalScore * 100
     const final = this.questionsScores.reduce((acc, curr) => { return acc + curr.score}, 0)/this.totalScore * 100
     const score = {
-      category: 'pret-a-porter',
+      category: 'desencombrement',
       score: final
     }
     if(this.first){

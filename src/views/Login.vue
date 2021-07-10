@@ -8,6 +8,7 @@
           :timeout="-1"
           :value="wrong"
           class="password-wrong"
+          color="red"
           absolute
           bottom
       >
@@ -21,7 +22,7 @@
               <v-row no-gutters class="margin-bottom">
                 <v-col cols="12">
                   <label for="email">Adresse email</label>
-                  <b-form-input id="email" required type="email" name="subject" class="margin-bottom input" v-model="email" placeholder="Votre adresse mail"></b-form-input>
+                  <b-form-input id="email" autofocus required type="email" name="subject" class="margin-bottom input" v-model="email" placeholder="Votre adresse mail"></b-form-input>
                 </v-col>
                 <label for="password">Mot de passe</label>
                 <v-col cols="11" align-self="center">
@@ -67,7 +68,7 @@
 
 <script>
 import firebase from "firebase/app"
-import {db} from './../main'
+import {db} from '../main'
 import {mapActions} from 'vuex'
 
 export default {
@@ -194,7 +195,7 @@ name: "Login",
     .img {
       width: 40%;
       height: 100vh;
-      background-image: url("./../assets/img/loginImage.png");
+      background-image: url("../assets/img/loginImage.png");
       background-size: contain;
 
     }

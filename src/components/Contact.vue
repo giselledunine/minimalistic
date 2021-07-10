@@ -5,7 +5,7 @@
 
     <v-container class="contact">
       <form @submit.prevent="sendEmail" class="contactForm">
-      <v-row no-gutters>
+      <v-row>
         <v-col cols="12" md="6" class="padding">
           <label for="firstname">Prénom:</label>
           <b-form-input id="firstname" required type="text" name="firstname" class="input" v-model="firstname" placeholder="Prénom"></b-form-input>

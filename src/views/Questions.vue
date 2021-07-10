@@ -57,40 +57,47 @@
         <v-col cols="12">
           <label for="age">Selon vous, dans quel(s) domaine(s) aimeriez-vous être accompagné ?</label>
         </v-col>
-        <v-col cols="12" class="flex" v-if="answers.questions.length > 0">
-          <div v-for="(chip, idx) in chips" :key="idx">
-            <v-scale-transition>
-              <v-chip
-                  transition="fade-transition"
-                  class="chip"
-                  close
-                  label
-                  dark
-                  v-if="chip.value"
-                  color="#6081FA"
-                  text-color="#ffffff"
-                  @click:close="removeChip(idx,chip.link)"
-              >{{chip.name}}
-              </v-chip>
-            </v-scale-transition>
-          </div>
-        </v-col>
-        <v-col cols="12" class="flex">
-          <div v-for="(chip, idx) in chips" :key="idx">
-            <v-scale-transition>
-              <v-chip
-                  transition="fade-transition"
-                  class="chip"
-                  label
-                  color="#B2B2B2"
-                  v-if="!chip.value"
-                  @click="addChip(idx,chip.link)"
-              >
-                {{ chip.name }}
-              </v-chip>
-            </v-scale-transition>
-            
-          </div>
+          <v-col cols="12" v-if="answers.questions.length > 0">
+            <v-container>
+              <v-row no-gutters>
+                <v-col v-for="(chip, idx) in chips" :key="idx" class="flex">
+                    <v-scale-transition>
+                      <v-chip
+                          transition="fade-transition"
+                          class="chip"
+                          close
+                          label
+                          dark
+                          v-if="chip.value"
+                          color="#6081FA"
+                          text-color="black"
+                          @click:close="removeChip(idx,chip.link)"
+                      >{{chip.name}}
+                      </v-chip>
+                    </v-scale-transition>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-col>
+        <v-col cols="12">
+          <v-container>
+            <v-row no-gutters>
+              <v-col v-for="(chip, idx) in chips" :key="idx" class="flex">
+                <v-scale-transition>
+                  <v-chip
+                      transition="fade-transition"
+                      class="chip"
+                      label
+                      color="#B2B2B2"
+                      v-if="!chip.value"
+                      @click="addChip(idx,chip.link)"
+                  >
+                    {{ chip.name }}
+                  </v-chip>
+                </v-scale-transition>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-col>
       </v-row>
     </v-container>
@@ -104,7 +111,7 @@
       <button class="btn" @click="nextForm(count)"><router-link :to="answers.questions[count].route" class="link" >Suivant</router-link></button>
     </v-container>
     <v-container v-if="end">
-      <button class="btn" @click="endForm()"><router-link to="/questions/results" class="link">Résultats</router-link></button>
+      <button class="btn" @click="endForm()"><router-link to="/results" class="link">Résultats</router-link></button>
     </v-container>
   </div>
 </template>
@@ -120,9 +127,9 @@ name: "Questions",
       {name: 'Prêt-à-porter', link: '/questions/pret-a-porter', value: false, progress: 0},
       {name: 'Tri sentimentale', link: '/questions/tri-sentimental', value: false, progress: 0},
       {name: 'Alimentation', link: '/questions/alimentation', value: false, progress: 0},
-      {name: 'Organisation/désencombrement', link: '/questions/organisation', value: false, progress: 0},
-      {name: 'Budget et Finance', link: '/questions/budget', value: false, progress: 0},
-      {name: "Design d'intérieur", link: '/questions/design', value: false, progress: 0},
+      {name: 'Organisation/désencombrement', link: '/questions/desencombrement', value: false, progress: 0},
+      {name: 'Budget et Finance', link: '/questions/budget-finance', value: false, progress: 0},
+      {name: "Design d'intérieur", link: '/questions/design-interieur', value: false, progress: 0},
     ],
     answers: {
       age: null,
@@ -138,11 +145,14 @@ name: "Questions",
     noLink: true,
     count: 0,
     situations: [
-      {value: null, text: 'Situation sociale'},
-      {value: 'première situation', text: 'première situation'},
-      {value: 'deuxième situation', text: 'deuxième situation'},
-      {value: 'troisième situation', text: 'troisième situation'},
-      {value: 'quatrième situation', text: 'quatrième situation'},
+      {value: 'Situation sociale', text: 'Situation sociale'},
+      {value: 'Étudiant(e)', text: 'Étudiant(e)'},
+      {value: 'Ouvrier(ère) / Employé(e)', text: 'Ouvrier(ère) / Employé(e)'},
+      {value: 'Artisan', text: 'Artisan'},
+      {value: 'Technicien(ne) / Agent de maîtrise', text: 'Technicien(ne) / Agent de maîtrise'},
+      {value: 'Cadre', text: 'Cadre'},
+      {value: 'Sans emploi', text: 'Sans emploi'},
+      {value: 'Retraité(e)', text: 'Retraité(e)'},
     ]
   }
   },
