@@ -42,11 +42,11 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col v-if="ifMentor" cols="12" sm="4" align-self="center">
+        <v-col v-if="ifMentor" cols="12" sm="4" align-self="center" class="alignRight">
           <v-btn
               tile
               color="#3FCA54"
-              class="button"
+              class="buttonCheck"
           >
             <v-icon left>
               mdi-check
@@ -54,7 +54,7 @@
             Choisis
           </v-btn>
         </v-col>
-        <v-col v-else cols="12" sm="4" align-self="center">
+        <v-col v-else cols="12" sm="4" align-self="center"  class="alignRight">
           <v-btn
               @click="clickMentor"
               tile
@@ -144,6 +144,7 @@ name: "MentorProfil",
     ...mapGetters(['user'])
   },
   created() {
+    window.scrollTo(0, 0);
     this.mentor_id = this.$route.params.id
     firebase.auth().onAuthStateChanged(user => {
       this.user_id = user.uid
@@ -176,6 +177,7 @@ name: "MentorProfil",
       batch.update(userRef, {mentor: this.mentor_id})
       await batch.commit()
       this.updateMentor(this.mentor_id)
+      this.ifMentor = true
     },
     ...mapActions(['updateMentor'])
   }
@@ -216,12 +218,27 @@ a {
   padding: 1.3rem !important;
 }
 
+
+.buttonCheck {
+  color: white;
+  font-size: 1rem;
+  font-family: Lato, sans-serif !important;
+  text-transform: none;
+  letter-spacing: normal;
+  border-radius: 8px;
+  padding: 1.3rem !important;
+}
+
 .button:hover {
   background-color: #2F5AF8 !important;
 }
 
 .marginLeft {
   margin-left: -3rem;
+}
+
+.alignRight {
+  text-align: right !important;
 }
 
 </style>

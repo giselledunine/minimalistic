@@ -8,6 +8,7 @@ const store = new Vuex.Store({
             lastname: '',
             firstname: '',
             mentor: '',
+            cours: [],
         },
         scores: [],
     },

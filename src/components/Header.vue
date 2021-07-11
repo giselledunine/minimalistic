@@ -30,12 +30,24 @@
             </template>
 
             <v-list class="menu">
-              <v-btn @click="signOut" class="text">
-                <v-icon left>
-                  mdi-logout-variant
-                </v-icon>
-                Déconnexion
-              </v-btn>
+              <v-list-item to="/dashboard">
+                <v-list-item-icon>
+                  <v-icon>
+                    mdi-account
+                  </v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>Dashboard</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-btn @click="signOut" class="text">
+                  <v-icon left>
+                    mdi-logout-variant
+                  </v-icon>
+                  Déconnexion
+                </v-btn>
+              </v-list-item>
             </v-list>
           </v-menu>
         </div>

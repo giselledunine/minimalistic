@@ -30,10 +30,10 @@ export default {
     }
   },
   mounted(){
-    this.setUser();
     this.setScores();
   },
   created(){
+    this.setUser();
     firebase.auth().onAuthStateChanged(user => {
       if(user){
         this.loggedIn = true

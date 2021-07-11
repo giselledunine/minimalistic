@@ -74,7 +74,6 @@ name: "Mentors",
   }
   },
   async mounted(){
-
   db.collection('mentors').get().then((snapshot) => {
         snapshot.docs.forEach((doc) => {
           console.log(doc.id)
@@ -99,6 +98,7 @@ name: "Mentors",
 
 .card{
   text-align: left;
+  border-radius: 8px;
 }
 
 .rating {
