@@ -143,8 +143,8 @@ name: "Dashboard",
   computed: {
     ...mapGetters(['user'])
   },
-  async mounted(){
-   await this.getMentor()
+  mounted(){
+   this.getMentor()
   },
   updated() {
   if(this.allCours.length === this.mentor.cours.length){
@@ -153,12 +153,13 @@ name: "Dashboard",
   },
   methods: {
     async getMentor(){
-      console.log(this.user.mentor)
-      const mentorRef = db.collection('mentors').doc(this.user.mentor);
-      await mentorRef.get().then((snapshot) => {
-        this.mentor = snapshot.data()
-        snapshot.data().cours.forEach(el=>this.getCours(el.id))
-      })
+      if(this.user.mentor){
+        const mentorRef = db.collection('mentors').doc(this.user.mentor);
+        await mentorRef.get().then((snapshot) => {
+          this.mentor = snapshot.data()
+          snapshot.data().cours.forEach(el=>this.getCours(el.id))
+        })
+      }
     },
     getCours(payload){
       const coursRef = db.collection('cours').doc(payload);
