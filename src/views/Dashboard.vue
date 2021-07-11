@@ -153,6 +153,7 @@ name: "Dashboard",
   },
   methods: {
     async getMentor(){
+      console.log(this.user.mentor)
       const mentorRef = db.collection('mentors').doc(this.user.mentor);
       await mentorRef.get().then((snapshot) => {
         this.mentor = snapshot.data()
