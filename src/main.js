@@ -129,7 +129,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 db.settings({timestampsInSnapshots: true})
-export {db};
+export {db, firebase};
 
 const storageRef = firebase.storage().ref();
 export {storageRef};

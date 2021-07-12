@@ -67,8 +67,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app"
-import {db} from '../main'
+import {db, firebase} from '../main'
 import {mapActions} from 'vuex'
 
 export default {
