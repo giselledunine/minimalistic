@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app"
+import {firebase} from "@/main.js"
 
 export default {
 name: "default",
