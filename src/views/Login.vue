@@ -91,28 +91,18 @@ name: "Login",
       this.typeInput = 'password';
     }
   },
-    async getUser(cred){
-      const users = db.collection('users').doc(cred.user.uid);
-      const doc = await users.get()
-      if(!doc.exists){
-        console.log('no such file');
-      }else {
-        this.updateUser(doc.data())
-        console.log(doc.data())
-      }
-    },
     async login(){
-      try {
-        await firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(cred => {
-          console.log(cred.user.uid);
-          this.getUser(cred);
+        await firebase.auth().signInWithEmailAndPassword(this.email, this.password).then( async cred => {
+          const user = await db.collection('users').doc(cred.user.uid).get();
+          if(user) {
+            new Promise((resolve) => {
+              resolve(this.updateUser(user.data()))
+            }).then(() => this.$router.replace({name: "Dashboard"}))
+          }
+        }).catch(err => {
+          console.log(err)
+          this.wrong = true
         })
-        this.$cookies.set('loggedIn','true');
-        this.$router.replace({name: "Dashboard"});
-      }catch(err){
-        console.log(err)
-        this.wrong = true
-      }
     }
   }
 }

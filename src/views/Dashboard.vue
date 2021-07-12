@@ -1,5 +1,5 @@
 <template>
-<div >
+<div class="wrapper">
   <h1>Mon suivi</h1>
   <v-card dark  class="card">
     <p class="cardTitle">
@@ -146,20 +146,13 @@ name: "Dashboard",
   mounted(){
    this.getMentor()
   },
-  updated() {
-  if(this.allCours.length === this.mentor.cours.length){
-    this.loading = false
-  }
-  },
   methods: {
     async getMentor(){
-      if(this.user.mentor){
         const mentorRef = db.collection('mentors').doc(this.user.mentor);
         await mentorRef.get().then((snapshot) => {
           this.mentor = snapshot.data()
           snapshot.data().cours.forEach(el=>this.getCours(el.id))
         })
-      }
     },
     getCours(payload){
       const coursRef = db.collection('cours').doc(payload);
@@ -169,6 +162,8 @@ name: "Dashboard",
           ...snapshot.data()
         }
         this.allCours.push(temp)
+      }).then(()=> {
+        this.loading = false
       })
     },
     countProgress(name){
