@@ -100,8 +100,8 @@
         <v-card-title>
           Les cours de {{mentor.firstname}}
         </v-card-title>
-        <v-list v-for="(cours, idx) in allCours" :key="idx">
-          <v-list-item v-for="(el, idx) in cours.cours" :key="idx">
+        <v-list-item-group v-for="(cours, idx) in allCours" :key="idx">
+          <v-list-item :to="`/cours/${cours.slug}/${el.slug}`" v-for="(el, idx) in cours.cours" :key="idx">
             <v-list-item-avatar>
               <v-icon
                   class="grey darken-3"
@@ -116,7 +116,7 @@
             </v-list-item-content>
             <p class="time">{{ el.time }}</p>
           </v-list-item>
-        </v-list>
+        </v-list-item-group>
       </v-card>
     </v-col>
   </v-row>
@@ -199,6 +199,10 @@ h2 {
 
 p {
   margin: 0;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .title {

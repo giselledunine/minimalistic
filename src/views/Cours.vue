@@ -103,7 +103,7 @@ name: "Cours",
     }
   },
   methods: {
-  ...mapActions(['userCours']),
+  ...mapActions(['updateCours']),
     async addLesson(){
       const tempObj = {
         category: this.cat,
