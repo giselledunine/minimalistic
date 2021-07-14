@@ -220,6 +220,7 @@ a:hover {
 .cardComment {
   text-align: right;
   margin-bottom: 0 !important;
+  font-size: 0.7rem;
 }
 
 .card {

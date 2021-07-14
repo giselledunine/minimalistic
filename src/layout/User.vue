@@ -125,7 +125,7 @@ export default {
   data(){
     return {
       group: 0,
-      imageProfil: 'pregasus.jpeg'
+      imageProfil: 'pregasus.jpeg',
     }
   },
   computed: {
@@ -146,53 +146,68 @@ export default {
 
 <style scoped>
 
-p {
-  text-align: left;
-  margin: 2rem 0 0 0;
-  color: #B2B2B2;
-}
+@media screen {
+  p {
+    text-align: left;
+    margin: 2rem 0 0 0;
+    color: #B2B2B2;
+  }
 
-.fullwidth {
-  width: 70%;
-  text-align: left;
-}
+  .fullwidth {
+    width: 100%;
+    text-align: left;
+    padding: 2rem;
+  }
 
-.userId {
-  text-align: left;
-}
+  .userId {
+    text-align: left;
+  }
 
-.userId p {
-  color: white;
-  margin: 1rem 0;
-}
+  .userId p {
+    color: white;
+    margin: 1rem 0;
+  }
 
-.flex {
-  display: flex;
-}
+  .flex {
+    display: flex;
+  }
 
-.menu {
-  background-color: black;
-  color: white !important;
-}
+  .menu {
+    background-color: black;
+    color: white !important;
+  }
 
-.sidebar {
-  padding: 1rem 1rem 1rem 3rem;
-}
+  .menuMobile {
+    background-color: black;
+    color: white !important;
+    padding: 2rem;
+    width: 90vw !important;
+  }
 
-.active {
-  color: #6081FA !important;
-}
+  .sidebar {
+    padding: 1rem 1rem 1rem 3rem;
+  }
 
-.theme--light.v-icon {
-  color: inherit !important;
-}
+  .active {
+    color: #6081FA !important;
+  }
 
-.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
-  color: #B2B2B2!important;
-}
+  .theme--light.v-icon {
+    color: inherit !important;
+  }
 
-v-list-item:hover {
-  background-color: #232323;
+  .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+    color: #B2B2B2!important;
+  }
+
+  v-list-item:hover {
+    background-color: #232323;
+  }
+  @media (max-width: 960px){
+    .sidebar{
+      display: none;
+    }
+  }
 }
 
 </style>

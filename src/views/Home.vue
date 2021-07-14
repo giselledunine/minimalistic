@@ -542,7 +542,7 @@ name: "Home",
 }
 
   .div5 {
-    padding: 5rem 2rem 8rem 5rem;
+    padding: 5rem 2rem;
   }
 
   .prices {
