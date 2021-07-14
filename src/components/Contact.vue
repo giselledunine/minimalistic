@@ -7,23 +7,23 @@
       <form @submit.prevent="sendEmail" class="contactForm">
       <v-row>
         <v-col cols="12" md="6" class="padding">
-          <label for="firstname">Prénom:</label>
+          <label for="firstname">Prénom</label>
           <b-form-input id="firstname" required type="text" name="firstname" class="input" v-model="firstname" placeholder="Prénom"></b-form-input>
         </v-col>
         <v-col cols="12" md="6" class="padding">
-          <label for="lastname">Nom:</label>
+          <label for="lastname">Nom</label>
           <b-form-input id="lastname" required type="text" name="lastname" class="input" v-model="lastname" placeholder="Nom"></b-form-input>
         </v-col>
         <v-col cols="12" md="6" class="padding">
-          <label for="email">Adresse e-mail:</label>
+          <label for="email">Adresse e-mail</label>
           <b-form-input id="email" required type="email" name="email" class="input" v-model="email" placeholder="Votre adresse mail"></b-form-input>
         </v-col>
         <v-col cols="12" md="6" class="padding">
-          <label for="phoneNumber">Numéro de téléphone:</label>
+          <label for="phoneNumber">Numéro de téléphone</label>
           <b-form-input id="phoneNumber" type="tel" name="phoneNumber" class="input" v-model="phoneNumber" placeholder="Numéro de téléphone"></b-form-input>
         </v-col>
         <v-col cols="12" class="padding">
-          <label for="subject">Numéro de téléphone:</label>
+          <label for="subject">Numéro de téléphone</label>
           <b-form-input id="subject" required type="text" name="subject" class="input" v-model="subject" placeholder="Sujet"></b-form-input>
         </v-col>
         <v-col cols="12" class="padding">

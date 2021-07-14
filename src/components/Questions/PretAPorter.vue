@@ -20,11 +20,18 @@
 
                   <v-list-item link rounded v-for="(text, key) in question.questions" :key="key">
                     <v-list-item-icon>
+                      <v-icon v-if="key === questionsScores[idx].score">
+                        mdi-check-circle
+                      </v-icon>
+                      <v-icon v-else>
+                        mdi-radiobox-blank
+                      </v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                       <v-list-item-title v-text="text.text">
                       </v-list-item-title>
                     </v-list-item-content>
+                    <p v-if="key === questionsScores[idx].score">{{text.subtitle}}</p>
 
                   </v-list-item>
 
@@ -71,7 +78,7 @@ name: "PretAPorter",
           ]},
         {title: 'Comment décririez-vous votre manière de faire du shopping ?',
           questions: [
-            {text: 'Je ne fais pas de shopping'},
+            {text: 'Je ne fais pas de shopping', subtitle: 'Bravo !'},
             {text: 'Mes achats sont toujours réfléchis'},
             {text: 'Je fais des achats compulsifs'},
           ]},

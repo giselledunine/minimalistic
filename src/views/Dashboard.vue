@@ -36,13 +36,13 @@
             :size="110"
             :width="12"
             :value="countProgress(cours.id)"
-            :color="countProgress(cours.id) === 0 ? '#515151' : allCours.find(el => el.name === cours.id).color"
+            :color="countProgress(cours.id) === 0 ? '#515151' : allCours.find(el => el.slug === cours.id).color"
         >
-          {{ countProgress(cours.id)}} %
+          {{countProgress(cours.id)}} %
         </v-progress-circular>
         <div class="alignLeft">
           <p :class="cours.id">{{cours.name}}</p>
-          <p>{{allCours.find(el => el.name === cours.id).cours.length}} cours</p>
+          <p>{{allCours.find(el => el.slug === cours.id) ? allCours.find(el => el.slug === cours.id).cours.length : 0}} cours</p>
         </div>
       </v-card>
     </v-col>
@@ -150,6 +150,7 @@ name: "Dashboard",
     async getMentor(){
         const mentorRef = db.collection('mentors').doc(this.user.mentor);
         await mentorRef.get().then((snapshot) => {
+          console.log('Mentor : ' + snapshot.data())
           this.mentor = snapshot.data()
           snapshot.data().cours.forEach(el=>this.getCours(el.id))
         })
@@ -167,12 +168,19 @@ name: "Dashboard",
       })
     },
     countProgress(name){
-      const coursLength = this.allCours.find(el => el.name === name).cours.length
-      console.log(coursLength)
-        const userCours = this.user.cours.filter(el => el.category === name)
-        const userCoursLength = userCours.length
-        const pourcent = userCoursLength * 100 / coursLength
-        return pourcent
+      const cours = this.allCours.find(el => el.slug === name)
+      let coursLength = 0;
+      let userCoursLength = 0
+      if(cours){
+        coursLength = cours.cours.length
+      }
+      const userCours = this.user.cours.filter(el => el.category === name)
+      if(userCours){
+        userCoursLength = userCours.length
+      }
+      const pourcent = userCoursLength * 100 / coursLength
+      return pourcent
+      //return 0
     },
   }
 }

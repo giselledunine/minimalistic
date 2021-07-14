@@ -4,16 +4,23 @@
       <v-icon color="#ffffff">mdi-chevron-left</v-icon><router-link to="/mentors">Retour</router-link>
       <v-row>
         <v-col align-self="end" cols="6" sm="2">
-            <v-avatar
+            <v-skeleton-loader v-if="loading" type="avatar">
+            </v-skeleton-loader>
+            <v-avatar v-else
                 size="150"
             >
-              <img src="./../assets/img/avatar2.png" alt="avatar">
+              <img :src="profilImage" alt="avatar">
             </v-avatar>
         </v-col>
-        <v-col cols="6" sm="6">
+        <v-col cols="6" sm="3" v-if="loading">
+          <v-skeleton-loader dark type="list-item-three-line">
+
+          </v-skeleton-loader>
+        </v-col>
+        <v-col cols="6" sm="6" v-else>
           <p class="name">{{ mentor.firstname }} {{mentor.lastname}}</p>
           <p class="subtitle">Mentor en {{ mentor.specialtyName }}</p>
-          <p class="cours">2 cours</p>
+          <p class="cours">{{ mentor.cours.length }} cours</p>
           <v-row>
             <v-col cols="3">
               <v-chip
@@ -74,6 +81,30 @@
                 <v-card-title>
                   Ses réseaux sociaux
                 </v-card-title>
+                <v-card-text>
+                  <v-row>
+                    <v-col cols="1">
+                      <v-icon color="#B2B2B2">
+                        mdi-facebook
+                      </v-icon>
+                    </v-col>
+                    <v-col  cols="1">
+                      <v-icon color="#B2B2B2">
+                        mdi-instagram
+                      </v-icon>
+                    </v-col>
+            <v-col  cols="1">
+              <v-icon color="#B2B2B2">
+                mdi-twitter
+              </v-icon>
+            </v-col>
+            <v-col cols="1">
+              <v-icon color="#B2B2B2">
+                mdi-youtube
+              </v-icon>
+            </v-col>
+                  </v-row>
+                </v-card-text>
               </v-card>
             </v-col>
             <v-col cols="12">
@@ -81,6 +112,28 @@
                 <v-card-title>
                   Préférences
                 </v-card-title>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Conseil en alimentation & assurances
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Conseil & audit
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Edition de lolgiciels
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      +3 autres
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                </v-list>
               </v-card>
             </v-col>
             <v-col cols="12">
@@ -88,6 +141,23 @@
                 <v-card-title>
                   Langues
                 </v-card-title>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Français
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Anglais
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Espagnole
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                </v-list>
               </v-card>
             </v-col>
           </v-row>
@@ -109,6 +179,18 @@
                 <v-card-title>
                   Skills
                 </v-card-title>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Alimentation
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Outfits
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                </v-list>
               </v-card>
             </v-col>
             <v-col cols="12">
@@ -116,6 +198,23 @@
                 <v-card-title>
                   Expériences
                 </v-card-title>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-title>
+                      Coaching
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      2 ans
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-subtitle>
+                      Accompagnement de plus de 50 personnes sur leur transition vers un mode de vie minimaliste
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                </v-list>
               </v-card>
             </v-col>
           </v-row>
@@ -138,6 +237,8 @@ name: "MentorProfil",
       user_id: null,
       mentor_id: null,
       mentor: {},
+      profilImage: "https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/default.jpg?alt=media&token=272a4dc7-a3a5-432a-ab79-b35617a31070",
+      loading : true,
     }
   },
   computed: {
@@ -156,11 +257,17 @@ name: "MentorProfil",
       this.ifMentor = false
     }
   },
-  mounted(){
-    db.collection('mentors').doc(this.mentor_id).get().then((doc) => {
+  async mounted(){
+    await db.collection('mentors').doc(this.mentor_id).get().then((doc) => {
       console.log(doc.data())
       this.mentor = {...doc.data()}
+      this.loading = false
       })
+
+    const storageRef = firebase.storage().ref()
+    storageRef.child(this.mentor.image).getDownloadURL().then((url) => {
+      this.profilImage = url
+    })
   },
   updated() {
     if(this.user.mentor === this.mentor_id){

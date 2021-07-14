@@ -23,6 +23,11 @@ const store = new Vuex.Store({
           return state.user = jsonObject;
         },
 
+        updateCours (state, payload) {
+            state.user.cours = payload
+            return localStorage.setItem('user', JSON.stringify(state.user));
+        },
+
         updateMentor (state, payload) {
             state.user.mentor = payload
             return localStorage.setItem('user', JSON.stringify(state.user));
@@ -50,6 +55,10 @@ const store = new Vuex.Store({
             if(localStorage.getItem('user')){
                 context.commit('setUser');
             }
+        },
+
+        updateCours(context, payload){
+            context.commit('updateCours', payload);
         },
 
         updateMentor(context, payload){

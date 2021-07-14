@@ -11,22 +11,22 @@
       <b-navbar-nav class="ml-auto">
         <!-- <b-nav-item to="/apropos">À propos</b-nav-item> -->
         <!-- <b-nav-item to="/projets">Formule d'abonnement</b-nav-item> -->
-        <b-nav-item to="">Services</b-nav-item>
-        <b-nav-item to="/contact">Contact</b-nav-item>
-        <b-nav-item href="https://minimalistic-mentoring.medium.com/" target="_blank">Blog</b-nav-item>
-        <b-nav-item to="/mentors">Mentors</b-nav-item>
+        <b-nav-item class="navItem" to="/mentors">Mentors</b-nav-item>
+        <b-nav-item class="navItem" href="https://minimalistic-mentoring.medium.com/" target="_blank">Blog</b-nav-item>
+        <b-nav-item class="navItem" to="/contact">Contact</b-nav-item>
+
         <div class="display" v-if="loggedIn">
-          <v-menu dark offset-y>
+          <v-menu v-if="!loading" dark offset-y>
 
             <template v-slot:activator="{ on, attrs }">
-              <v-avatar
-                  v-bind="attrs"
-                  v-on="on"
-                  color="#6081FA"
-                  size="40"
-              >
-                <span class="white--text text-h5">AM</span>
-              </v-avatar>
+                <v-avatar
+                    v-bind="attrs"
+                    v-on="on"
+                    color="#6081FA"
+                    size="40"
+                >
+                  <img :src="profilImage" alt="avatar">
+                </v-avatar>
             </template>
 
             <v-list class="menu">
@@ -53,7 +53,7 @@
         </div>
 
         <div class="display" v-else>
-          <b-button to="/login" class="btnConnect">Se connecter</b-button>
+          <router-link to="/login" class="btnConnect">Se connecter</router-link>
           <b-button to="/register" class="btn">S'inscrire</b-button>
         </div>
 
@@ -64,6 +64,7 @@
 
 <script>
 import {firebase} from "@/main.js"
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
 name: "default",
@@ -72,7 +73,12 @@ name: "default",
     loggedIn: false,
     closeOnClick: false,
     model: null,
+    profilImage: 'pegasus.jpeg',
+    loading: true,
   }
+  },
+  computed: {
+    ...mapGetters(['user'])
   },
   created(){
     firebase.auth().onAuthStateChanged(user => {
@@ -83,10 +89,26 @@ name: "default",
       }
     })
   },
+  mounted(){
+    const storageRef = firebase.storage().ref()
+        storageRef.child(this.user.image).getDownloadURL().then((url) => {
+      this.profilImage = url
+          this.loading = false
+    })
+  },
   methods: {
+  ...mapActions(['setUser']),
     async signOut(){
       try{
        await firebase.auth().signOut();
+       const user = {
+         firstname: '',
+         lastname: '',
+         mentor: '',
+         image: '',
+         cours: [],
+       }
+       this.setUser(user)
        this.$router.replace({name: "Home"});
        this.$cookies.remove('loggedIn')
       }catch(err) {
@@ -98,6 +120,11 @@ name: "default",
 </script>
 
 <style scoped>
+
+a:hover {
+  text-decoration: none;
+}
+
 .navbar-dark .navbar-nav .nav-link:hover{
   color: #2F5AF8;
 }
@@ -105,8 +132,31 @@ name: "default",
   color: white;
 }
 
+.btn {
+  margin-left: 1rem;
+}
+
+.btnConnect {
+  font-family: Lato, sans-serif;
+  font-size: 1rem;
+  color: #6081FA !important;;
+  margin-left: 1rem;
+  padding: 0.5rem;
+}
+.btnConnect:hover{
+  text-decoration: underline;
+}
+
+.display {
+  display: flex;
+}
+
+.navItem {
+  font-size: 1rem;
+}
+
 .nav {
-  padding: 0 5rem;
+  padding: 0 8rem;
 }
 
 .menu {

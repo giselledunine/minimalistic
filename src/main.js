@@ -96,10 +96,19 @@ const routes = [
   {
     path: "/mentor-profil/:id", // pas de suite, donc fin de l'[A6]  = lyon
     name: "MentorsProfil",
-    meta: {requiredAuth: true},
+    meta: {requiredAuth: false},
     components: {
       default: () =>
           import(/* webpackChunkName: "users" */ "@/views/MentorProfil"),
+    },
+  },
+  {
+    path: "/cours/:cat/:slug", // pas de suite, donc fin de l'[A6]  = lyon
+    name: "Cours",
+    meta: {requiredAuth: true},
+    components: {
+      default: () =>
+          import(/* webpackChunkName: "users" */ "@/views/Cours"),
     },
   },
   { path: '*', redirect: '/' },

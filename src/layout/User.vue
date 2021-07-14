@@ -9,9 +9,9 @@
               <div class="userId">
                 <v-avatar
                     color="#6081FA"
-                    size="70"
+                    size="90"
                 >
-                  <span class="white--text text-h5">AM</span>
+                  <img :src="imageProfil" alt="avatar">
                 </v-avatar>
                 <p>{{ user.firstname }} {{ user.lastname }}s</p>
                 <v-chip label text-color="#ffffff" color="#6081FA">
@@ -118,12 +118,14 @@
 import Header from "@/components/Header";
 import Dashboard from "@/views/Dashboard";
 import {mapGetters} from 'vuex'
+import {firebase} from '@/main.js'
 
 export default {
   name: "User",
   data(){
     return {
       group: 0,
+      imageProfil: 'pregasus.jpeg'
     }
   },
   computed: {
@@ -132,6 +134,12 @@ export default {
   components: {
     Header,
     Dashboard,
+  },
+  mounted() {
+    const storageRef = firebase.storage().ref()
+    storageRef.child(this.user.image).getDownloadURL().then((url) => {
+      this.imageProfil = url
+    })
   }
 }
 </script>

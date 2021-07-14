@@ -14,18 +14,7 @@
         >
           Votre incription a bien été prise en compte
         </v-snackbar>
-        <form class="contact-form" @submit.prevent="sendEmail">
-          <v-container class="inscription newsletter">
-            <v-row no-gutters>
-              <v-col cols="12" sm="9">
-                <b-form-input  type="email" name="customer_email" class="input" v-model="email" placeholder="Votre adresse mail"></b-form-input>
-              </v-col>
-              <v-col cols="12" sm="3">
-                <b-button type="submit" class="btn marginLeft">S'incrire</b-button>
-              </v-col>
-            </v-row>
-          </v-container>
-        </form>
+        <b-button type="submit" class="btn"><router-link class="color" to="/register">Trouver votre mentor</router-link> </b-button>
         <!--
         <b-button class="btn ">Trouver un Mentor</b-button>
         -->
@@ -38,7 +27,7 @@
     </div>
     <div class="div2">
       <h2>Notre objectif est d’accompagner nos futurs minimalistes</h2>
-      <p>Notre but est d’offrir aux minimalistes la meilleure transition propre a eux-mêmes. Minimalistic vous propose une plateforme de mentoring qui permettra aux nouveaux minimalistes d’être coaché par des minimalistes experts sur plusieurs sujets (mode de vie, mobilier, décoration, alimentation...)</p>
+      <p class="text">Notre but est d’offrir aux minimalistes la meilleure transition propre a eux-mêmes. Minimalistic vous propose une plateforme de mentoring qui permettra aux nouveaux minimalistes d’être coaché par des minimalistes experts sur plusieurs sujets (mode de vie, mobilier, décoration, alimentation...)</p>
     </div>
     <div class="flex2">
       <div class="cardnumber">
@@ -91,21 +80,21 @@
     </div>
     <v-container class="marginTop">
       <v-row justify="space-between">
-        <v-col cols="12" sm="3">
+        <v-col cols="12" sm="4">
           <v-lazy>
             <img src="./../assets/img/Number1.png" alt="number1">
           </v-lazy>
           <p class="pTitle">Trouver mentor</p>
           <p>Choisissez parmi nos mentors spécialisés dans divers domaines selon vos besoins</p>
         </v-col>
-        <v-col cols="12" sm="3">
+        <v-col cols="12" sm="4">
           <v-lazy>
             <img src="./../assets/img/Number2.png" alt="number1">
           </v-lazy>
           <p class="pTitle">Consultez des cours en vidéo et en visio</p>
           <p>Suivez les cours et communiquez avec votre mentor</p>
         </v-col>
-        <v-col cols="12" sm="3">
+        <v-col cols="12" sm="4">
           <v-lazy>
             <img src="./../assets/img/Number3.png" alt="number1">
           </v-lazy>
@@ -226,121 +215,122 @@
                 <h4>Essentiel</h4>
                 <h3 class="number">9,99 €<span class="details">par mois (7 jours d'essai gratuit)</span></h3>
                 <v-list dense dark>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon>mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Possibilité de contacter un mentor uniquement sur rendez-vous
+                      <p>Possibilité de contacter un mentor uniquement sur rendez-vous</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon>mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Accès à toutes les vidéos et événements
+                      <p>Accès à toutes les vidéos et événements</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon>mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Suivi simple
+                      <p>Suivi simple</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item disabled>
+                  <v-list-item disabled class="item">
                     <v-list-item-icon>
                       <v-icon disabled>mdi-close</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Mentor personnalisé
+                      <p>Mentor personnalisé</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item disabled>
+                  <v-list-item disabled class="item">
                     <v-list-item-icon>
                       <v-icon disabled>mdi-close</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Rejoindre la communauté Minimalistic
+                      <p>Rejoindre la communauté Minimalistic</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item disabled>
+                  <v-list-item disabled class="item">
                     <v-list-item-icon>
                       <v-icon disabled>mdi-close</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Accès à tous les cours
+                      <p>Accès à tous les cours</p>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
                 <b-button class="btn">Commencer</b-button>
               </v-card>
             </v-col>
-            <v-col cols="12" sm="5">
-              <v-card class="prices">
+            <v-col cols="12" sm="5" >
+              <v-card class="pricesHover">
                 <v-row>
                   <v-col cols="8">
                     <h4>Premium</h4>
                   </v-col>
-                  <v-col cols="4">
+                  <v-col cols="4" class="premium">
                       <v-chip
                           label
                           dark
                           color="#6081FA"
-                      >Premium
+                          class="chip"
+                      >Recommandé
                       </v-chip>
                   </v-col>
                 </v-row>
                 <h3 class="number">49,99 €<span class="details">par mois (15 jours d'essai gratuit)</span></h3>
                 <v-list dense dark>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon>mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Possibilité de contacter un mentor uniquement sur rendez-vous
+                      <p>Possibilité de contacter un mentor uniquement sur rendez-vous</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon>mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Accès à toutes les vidéos et événements
+                      <p>Accès à toutes les vidéos et événements</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon>mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Suivi personalisé
+                      <p>Suivi personalisé</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon>mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Mentor personnalisé
+                      <p>Mentor personnalisé</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon >mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Rejoindre la communauté Minimalistic
+                      <p>Rejoindre la communauté Minimalistic</p>
                     </v-list-item-content>
                   </v-list-item>
-                  <v-list-item>
+                  <v-list-item class="item">
                     <v-list-item-icon>
                       <v-icon>mdi-check</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content class="marginLeft">
-                      Accès à tous les cours
+                      <p>Accès à tous les cours</p>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
@@ -350,10 +340,6 @@
           </v-row>
         </v-container>
       </div>
-    </div>
-    <div class="div6">
-      <h2>Ils y sont arrivés ! <br/> Et pourquoir pas vous ?</h2>
-      <p>Ils ont suivis nos conseils et ils vous raconte leurs histoires.</p>
     </div>
     <div class="div5">
       <h2>S'inscrire à la newsletter</h2>
@@ -452,10 +438,37 @@ name: "Home",
     color: #B2B2B2;
   }
 
+  .chip {
+    font-size: 0.8rem;
+  }
+
+  .item {
+    padding: 0;
+  }
+
+  .premium {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .text {
+    max-width: 630px;
+    margin: 0 auto;
+  }
+
+  .v-application--is-ltr .v-list-item__action:first-child, .v-application--is-ltr .v-list-item__icon:first-child{
+    margin-right: 4px !important;
+  }
+
   .number {
     font-size: 1.5rem;
     color: #6081FA;
     font-weight: 700;
+  }
+
+  .color {
+    color: white;
+    text-decoration: none;
   }
 
   .borderImg {
@@ -474,7 +487,6 @@ name: "Home",
 
   .btn {
     width: 100% !important;
-    margin-left: 0;
   }
 
   .avatar {
@@ -495,7 +507,8 @@ name: "Home",
   .flex2 {
     background-color: #232323;
     display: flex;
-    max-width: 550px;
+    border-radius: 8px;
+    max-width: 65%;
     margin: 0 auto;
     margin-bottom: 5rem;
   }
@@ -540,6 +553,7 @@ name: "Home",
   }
 
   .prices h3 {
+    margin-top: 1.5rem !important;
     font-size: 1.5rem;
     color: #ffffff;
     font-weight: 700;
@@ -550,19 +564,24 @@ name: "Home",
     color: black !important;
   }
 
-  .prices:hover .btn {
+  .pricesHover .btn {
     background-color: #6081FA !important;
     color: white !important;
   }
 
-  .prices:hover h3 {
+  .pricesHover h3 {
+    margin-top: 0.7rem !important;
     transition: 0.3s;
     font-size: 1.5rem;
     color: #6081FA;
     font-weight: 700;
   }
 
-  .prices:hover {
+  .pricesHover {
+    text-align: left;
+    padding: 1.2rem;
+    margin: 1rem;
+    background-color: #1E1E1E;
     border: 3px solid #6081FA;
   }
 
@@ -591,7 +610,7 @@ name: "Home",
 
   .cardnumber {
     width: 25%;
-    padding: 1rem;
+    padding: 1rem 4rem;
   }
 
   .cardnumber p {
@@ -605,7 +624,7 @@ name: "Home",
 
   .details {
     margin-left: 1rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #B2B2B2;
     font-weight: 500;
   }

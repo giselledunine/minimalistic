@@ -115,6 +115,9 @@ export default {
       user: {
         lastname: '',
         firstname: '',
+        image: 'pegasus.jpeg',
+        mentor: '',
+        cours: []
       },
       imageURL : null,
       image: null,
@@ -151,16 +154,30 @@ export default {
     },
     async register(){
         console.log('incription')
-        const user = await firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((res) => {
-          console.log(res);
+        await firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((res) => {
+
+          if(this.image){
+            const formatedImageName = this.image.name.replaceAll(' ', '')
+            this.user.image = formatedImageName
+            const storageRef = firebase.storage().ref()
+            const ref = storageRef.child(formatedImageName)
+            ref.put(this.image).then(() => {
+              console.log('Upload file !')
+            })
+          }
+
           const userRef = db.collection('users').doc(res.user.uid)
+
           userRef.set(this.user).then(() => {
             console.log("Frank created");
           }).catch(err => console.log(err));
+
           this.updateUser(this.user)
-          console.log(user)
+
           this.$cookies.set('loggedIn','true');
+
           this.$router.replace({name: "Questions"});
+
         }).catch(err => console.log(err))
     }
   }

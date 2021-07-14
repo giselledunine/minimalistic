@@ -5,7 +5,7 @@
     <v-col cols="12" sm="4" v-for="(form, idx) in forms" :key="idx">
       <v-card v-if="match(form)" justify="center" class="card" dark>
         <v-progress-circular
-            :rotate="90"
+            :rotate="270"
             :size="100"
             :width="10"
             :value="scores.find(el => el.category === form.class).score"
@@ -20,7 +20,7 @@
         <v-progress-circular
             :rotate="90"
             :size="100"
-            :width="15"
+            :width="10"
             :value="0"
         >
           <v-icon>mdi-lock</v-icon>
@@ -41,7 +41,7 @@
       <v-container fluid>
         <v-row>
           <v-col cols="12" sm="4" v-for="(mentor, idx) in mentors.filter(el=> el.specialty === score.category)" :key="idx">
-            <v-card class="mentors">
+            <v-card hover @click="mentorLink(mentor.id)" class="mentors">
               <v-img
                   height="190"
                   src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
@@ -137,12 +137,19 @@ name: "Results",
         return false;
       }
     },
+    mentorLink(id){
+      this.$router.replace({path: `/mentor-profil/${id}`});
+    },
     async getMentors(){
       const mentors = db.collection('mentors');
       const docs = await mentors.get()
       docs.forEach(doc => {
         console.log(doc.id, '=>', doc.data());
-        this.mentors.push(doc.data())
+        const temp = {
+          id: doc.id,
+          ...doc.data()
+        }
+        this.mentors.push(temp)
       })
     }
   },
@@ -217,7 +224,7 @@ h2 {
 }
 
 .link {
-  color: black;
+  color: white;
   padding: 0.5rem 2rem;
   margin: 0 -30px;
 }
@@ -233,7 +240,7 @@ p {
 
 .btn {
   margin: 0;
-  background-color: white !important;
+  background-color: #6081fa !important;
   border-radius: 8px !important;
 }
 

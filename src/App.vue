@@ -97,6 +97,7 @@ export default {
 
 label {
   color: #B2B2B2;
+  font-size: 1rem;
 }
 
 p {
@@ -132,25 +133,12 @@ h3 {
   background-color: #6081FA !important;
   border: none !important;
   font-family: Lato, sans-serif;
-  color: white !important;;
-  margin-left: 1rem;
+  color: white !important;
   padding: 0.5rem 2rem !important;
 }
 .btn:hover{
   background-color: #2F5AF8 !important;
   color: white !important;
-}
-
-.btnConnect {
-  background-color: #232323 !important;
-  border: solid 1px !important;
-  font-family: Lato, sans-serif;
-  color: #6081FA !important;;
-  margin-left: 1rem;
-}
-.btnConnect:hover{
-  background-color: #2F5AF8 !important;
-  color: black !important;
 }
 
 .lien {

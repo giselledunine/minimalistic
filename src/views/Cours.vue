@@ -1,0 +1,190 @@
+<template>
+<v-container class="textAlign">
+  <v-row>
+    <v-col cols="12" sm="12">
+      <p class="category">Cours : {{ catName }}</p>
+      <h1>{{ lesson.name }}</h1>
+    </v-col>
+    <v-col cols="12" lg="9">
+      <img src="@/assets/img/fond2.png" width="100%" alt="videos">
+    </v-col>
+    <v-col cols="12" lg="3">
+      <v-container>
+        <v-row>
+          <v-col cols="12" class="cardMentor align-stretch">
+            <v-card dark class="card">
+              <v-avatar
+                  color="#6081FA"
+                  size="110"
+              >
+                <img src="@/assets/img/avatar1.png" alt="avatar">
+              </v-avatar>
+              <v-card-title>
+                Stella Marques
+              </v-card-title>
+              <v-card-subtitle>
+                Mentor en alimentation
+              </v-card-subtitle>
+              <v-card-text>
+                <v-row justify="center">
+                  <v-col class="col" cols="2">
+                    <v-icon color="#B2B2B2" size="20">
+                      mdi-facebook
+                    </v-icon>
+                  </v-col>
+                  <v-col class="col" cols="2">
+                    <v-icon color="#B2B2B2" size="20">
+                      mdi-instagram
+                    </v-icon>
+                  </v-col>
+                  <v-col cols="2" class="col">
+                    <v-icon color="#B2B2B2" size="20">
+                      mdi-twitter
+                    </v-icon>
+                  </v-col>
+                  <v-col cols="2" class="col">
+                    <v-icon color="#B2B2B2" size="20">
+                      mdi-youtube
+                    </v-icon>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+              <button class="btn">Envoyer un message</button>
+            </v-card>
+          </v-col>
+          <v-col cols="12">
+            <button v-if="done"  class="btnVideoCheck"><v-icon color="white">mdi-check</v-icon></button>
+            <button v-else @click="addLesson" class="btnVideo">J'ai vue la vidéo</button>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-col>
+  </v-row>
+</v-container>
+</template>
+
+<script>
+import {db, firebase} from '@/main.js'
+import {mapGetters, mapActions} from 'vuex'
+
+export default {
+name: "Cours",
+  data(){
+    return {
+      cat: '',
+      catName: '',
+      slug: '',
+      lesson: {},
+      done: false,
+      user_id: null,
+    }
+  },
+  computed: {
+    ...mapGetters(['user']),
+  },
+  created(){
+    this.cat = this.$route.params.cat
+    this.slug = this.$route.params.slug
+    firebase.auth().onAuthStateChanged(user => {
+      this.user_id = user.uid
+      console.log(user.uid)
+    })
+  },
+  async mounted(){
+    await db.collection('cours').doc(this.cat).get().then((snapshot) => {
+      console.log(snapshot.data())
+      this.catName = snapshot.data().name
+      this.lesson = snapshot.data().cours.find((el) => el.slug === this.slug)
+    })
+    const isCours = this.user.cours.find((el) => el.slug === this.slug)
+
+    if(isCours) {
+      this.done = true
+    }
+  },
+  methods: {
+  ...mapActions(['userCours']),
+    async addLesson(){
+      const tempObj = {
+        category: this.cat,
+        slug: this.slug
+      }
+      const temp = this.user.cours
+      temp.push(tempObj)
+
+      const batch = db.batch();
+      const userRef = await db.collection('users').doc(this.user_id);
+      batch.update(userRef, {cours: temp})
+      await batch.commit()
+      this.updateCours(temp)
+      this.done = true
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+h1 {
+  text-align: left;
+  margin: 0;
+}
+
+img {
+  border-radius: 8px;
+}
+
+.card {
+  padding: 2rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.cardMentor {
+  height: 100%;
+}
+
+.col {
+  padding: 0;
+}
+
+.btn {
+  margin-top: 1rem;
+  border-radius:8px !important ;
+}
+
+.btnVideo {
+  background-color: white;
+  color: black;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.btnVideoCheck {
+  background-color: #3FCA54;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+
+.textAlign {
+  text-align: left;
+}
+
+.category {
+  color: #B2B2B2;
+  margin: 0;
+}
+
+</style>
