@@ -83,6 +83,7 @@ name: "Login",
   },
   methods:{
   ...mapActions(['updateUser']),
+    ...mapActions(['updateDashboard']),
   changeType(){
     if (this.typeInput === 'password'){
       this.typeInput = 'text';
@@ -90,13 +91,17 @@ name: "Login",
       this.typeInput = 'password';
     }
   },
+    toDashboard(){
+      this.updateDashboard(0)
+      this.$router.replace({name: "Dashboard"})
+    },
     async login(){
         await firebase.auth().signInWithEmailAndPassword(this.email, this.password).then( async cred => {
           const user = await db.collection('users').doc(cred.user.uid).get();
           if(user) {
             new Promise((resolve) => {
               resolve(this.updateUser(user.data()))
-            }).then(() => this.$router.replace({name: "Dashboard"}))
+            }).then(() => this.toDashboard())
           }
         }).catch(err => {
           console.log(err)

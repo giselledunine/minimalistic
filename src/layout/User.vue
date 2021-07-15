@@ -33,7 +33,7 @@
               </template>
 
               <v-list class="menu">
-                <v-list-item to="/dashboard" >
+                <v-list-item @click="toDashboard">
                   <v-list-item-icon>
                     <v-icon>
                       mdi-account
@@ -177,6 +177,30 @@
               <v-list-item-title>Support</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <p>COMPTE</p>
+          <v-list-item
+              link
+          >
+            <v-list-item-icon>
+              <v-icon color="inherit">mdi-cog</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Réglage</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+              link
+              @click="signOut"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-logout-variant</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Déconnexion</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list-item-group>
 
 
@@ -279,6 +303,31 @@
 
                 <v-list-item-content>
                   <v-list-item-title>Support</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+
+              <p>COMPTE</p>
+              <v-list-item
+                  link
+              >
+                <v-list-item-icon>
+                  <v-icon color="inherit">mdi-cog</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                  <v-list-item-title>Réglage</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item
+                  link
+                  @click="signOut"
+              >
+                <v-list-item-icon>
+                  <v-icon>mdi-logout-variant</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                  <v-list-item-title>Déconnexion</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
               </v-list-item-group>
@@ -403,6 +452,10 @@ export default {
     text-decoration: none;
   }
 
+  .nav {
+    padding: 0 8rem;
+  }
+
   .icon {
     margin-right: 1rem;
   }
@@ -490,6 +543,9 @@ export default {
   @media (max-width: 960px){
     .mobile {
       display: block;
+    }
+    .nav {
+      padding: 0 1rem;
     }
 
     .sidebar{

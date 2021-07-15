@@ -54,7 +54,7 @@
           <v-avatar
               size="90"
           >
-            <img src="./../assets/img/avatar5.png" alt="avatar">
+            <img :src="`https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/${mentor.img}?alt=media&token=0052d090-e1a5-44de-9a45-5ef754133937`" alt="avatar">
           </v-avatar>
         </v-card-title>
         <v-card-title>
@@ -158,6 +158,7 @@ name: "Dashboard",
     getCours(payload){
       const coursRef = db.collection('cours').doc(payload);
       coursRef.get().then((snapshot) => {
+        console.log(snapshot.data())
         const temp = {
           name : snapshot.id,
           ...snapshot.data()
@@ -246,6 +247,7 @@ borderRadius {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  height: 300px !important;
 }
 
 .pret-a-porter {
@@ -265,6 +267,10 @@ borderRadius {
 }
 
 .desencombrement {
+  color: #A58FFF;
+}
+
+.budget-finance {
   color: #FA6069;
 }
 

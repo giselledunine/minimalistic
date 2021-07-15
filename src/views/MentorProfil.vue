@@ -265,7 +265,7 @@ name: "MentorProfil",
       })
 
     const storageRef = firebase.storage().ref()
-    storageRef.child(this.mentor.image).getDownloadURL().then((url) => {
+    storageRef.child(this.mentor.img).getDownloadURL().then((url) => {
       this.profilImage = url
     })
   },

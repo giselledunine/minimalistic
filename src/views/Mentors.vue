@@ -20,7 +20,7 @@
           <v-card hover @click="mentorLink(mentor.id)" dark class="card">
             <v-img
                 height="250"
-                src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+                :src="`https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/${mentor.img}?alt=media&token=0052d090-e1a5-44de-9a45-5ef754133937`"
             ></v-img>
             <v-card-title>
               {{mentor.firstname}} {{mentor.lastname}}
