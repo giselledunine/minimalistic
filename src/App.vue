@@ -191,4 +191,15 @@ p{
   padding: 2rem;
   background-color: #000000;
   }
+
+@media screen and (max-width: 960px) {
+  .fullwidth {
+    margin-top: 3rem;
+  }
+
+  .wrapper {
+    margin-top: 5rem;
+  }
+}
+
 </style>

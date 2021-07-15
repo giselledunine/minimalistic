@@ -566,10 +566,6 @@ export default {
       z-index: 100;
     }
 
-    .fullwidth {
-      margin-top: 3rem;
-    }
-
     .sidebar{
       display: none;
     }
