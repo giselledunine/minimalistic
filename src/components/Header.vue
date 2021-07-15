@@ -34,7 +34,7 @@
                </template>
 
                <v-list class="menu">
-                 <v-list-item to="/dashboard">
+                 <v-list-item @click="toDashboard">
                    <v-list-item-icon>
                      <v-icon>
                        mdi-account
@@ -74,7 +74,7 @@
          <v-list-item-content>
            <div class="userId">
                <v-btn
-                   to="/dashboard"
+                   @click="toDashboard"
                    class="mx-3"
                    fab
                    dark
@@ -100,7 +100,6 @@
            dense
            nav
        >
-         <p>MENU</p>
          <v-list-item-group
              v-model="group"
              class="active"
@@ -109,67 +108,33 @@
                link
            >
              <v-list-item-icon>
-               <v-icon color="inherit">mdi-chart-bar</v-icon>
+               <v-icon>mdi-account-supervisor-circle-outline</v-icon>
              </v-list-item-icon>
 
              <v-list-item-content>
-               <v-list-item-title>Mon suivi</v-list-item-title>
+               <v-list-item-title>Les Mentors</v-list-item-title>
              </v-list-item-content>
            </v-list-item>
            <v-list-item
                link
            >
              <v-list-item-icon>
-               <v-icon>mdi-bookmark-outline</v-icon>
+               <v-icon>mdi-post-outline</v-icon>
              </v-list-item-icon>
 
              <v-list-item-content>
-               <v-list-item-title>Mes enregistrements</v-list-item-title>
+               <v-list-item-title>Blog</v-list-item-title>
              </v-list-item-content>
            </v-list-item>
            <v-list-item
                link
            >
              <v-list-item-icon>
-               <v-icon>mdi-archive-outline</v-icon>
+               <v-icon>mdi-phone</v-icon>
              </v-list-item-icon>
 
              <v-list-item-content>
-               <v-list-item-title>Badges</v-list-item-title>
-             </v-list-item-content>
-           </v-list-item>
-           <v-list-item
-               link
-           >
-             <v-list-item-icon>
-               <v-icon>mdi-calendar</v-icon>
-             </v-list-item-icon>
-
-             <v-list-item-content>
-               <v-list-item-title>Mes évènements</v-list-item-title>
-             </v-list-item-content>
-           </v-list-item>
-           <p>SUPPORT</p>
-           <v-list-item
-               link
-           >
-             <v-list-item-icon>
-               <v-icon color="inherit">mdi-help-circle-outline</v-icon>
-             </v-list-item-icon>
-
-             <v-list-item-content>
-               <v-list-item-title>FAQ</v-list-item-title>
-             </v-list-item-content>
-           </v-list-item>
-           <v-list-item
-               link
-           >
-             <v-list-item-icon>
-               <v-icon>mdi-information-outline</v-icon>
-             </v-list-item-icon>
-
-             <v-list-item-content>
-               <v-list-item-title>Support</v-list-item-title>
+               <v-list-item-title>Contact</v-list-item-title>
              </v-list-item-content>
            </v-list-item>
          </v-list-item-group>
@@ -247,6 +212,10 @@ name: "default",
     },
     routeDashboard(){
       this.$router.replace({name: "Dashboard"})
+    },
+    toDashboard(){
+      this.updateDashboard(0)
+      this.$router.replace({name: 'Dashboard'})
     }
   }
 }

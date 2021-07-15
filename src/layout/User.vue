@@ -28,7 +28,7 @@
                     color="#6081FA"
                     size="40"
                 >
-                  <img :src="profilImage" alt="avatar">
+                  <img :src="imageProfil" alt="avatar">
                 </v-avatar>
               </template>
 
@@ -73,7 +73,7 @@
         <v-list-item-content>
           <div class="userId">
             <v-btn
-                to="/dashboard"
+                @click="toDashboard"
                 class="mx-3"
                 fab
                 dark
@@ -178,7 +178,7 @@
     </v-navigation-drawer>
 
 
-    <div class="flex">
+    <div class="flexDisplay">
       <div class="sidebar">
         <v-navigation-drawer class="menu" permanent>
           <v-list-item>
@@ -278,6 +278,7 @@
               </v-list-item-group>
 
 
+
           </v-list>
         </v-navigation-drawer>
       </div>
@@ -331,6 +332,7 @@ export default {
     const storageRef = firebase.storage().ref()
     storageRef.child(this.user.image).getDownloadURL().then((url) => {
       this.imageProfil = url
+      this.loading = false
     })
     this.setDashboard()
   },
@@ -340,7 +342,30 @@ export default {
   methods: {
     ...mapActions(['setUser']),
     ...mapActions(['updateDashboard']),
-    ...mapActions(['setDashboard'])
+    ...mapActions(['setDashboard']),
+    toDashboard(){
+      this.updateDashboard(0)
+      this.group = 0
+      this.$router.replace({name: 'Dashboard'})
+    },
+    async signOut(){
+      try{
+        await firebase.auth().signOut();
+        const user = {
+          firstname: '',
+          lastname: '',
+          mentor: '',
+          image: '',
+          cours: [],
+          drawer: false,
+        }
+        this.setUser(user)
+        this.$router.replace({name: "Home"});
+        this.$cookies.remove('loggedIn')
+      }catch(err) {
+        console.log(err)
+      }
+    },
   }
 }
 </script>
@@ -352,6 +377,21 @@ export default {
     text-align: left;
     margin: 2rem 0 0 0;
     color: #B2B2B2;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .btnConnect {
+    font-family: Lato, sans-serif;
+    font-size: 1rem;
+    color: #6081FA !important;;
+    margin-left: 1rem;
+    padding: 0.5rem;
+  }
+  .btnConnect:hover{
+    text-decoration: underline;
   }
 
   .fullwidth {
@@ -395,6 +435,10 @@ export default {
     padding: 1rem 1rem 1rem 3rem;
   }
 
+  .flexDisplay {
+    display: flex;
+  }
+
   .active {
     color: #6081FA !important;
   }
@@ -410,7 +454,16 @@ export default {
   v-list-item:hover {
     background-color: #232323;
   }
+
+  .mobile {
+    display: none;
+  }
+
   @media (max-width: 960px){
+    .mobile {
+      display: block;
+    }
+
     .sidebar{
       display: none;
     }

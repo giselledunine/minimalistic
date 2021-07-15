@@ -64,7 +64,7 @@
     <v-col cols="12" sm="12">
       <h2>Les cours de {{mentor.firstname}}</h2>
     </v-col>
-    <v-col class=".hide-overflow" cols="12" sm="4" v-for="(cours, idx) in mentor.cours" :key="idx">
+    <v-col class=".hide-overflow" cols="12" md="6" lg="4" v-for="(cours, idx) in mentor.cours" :key="idx">
       <v-card hover @click="linkCours()" dark>
         <v-img
             height="180"
@@ -148,6 +148,7 @@ name: "Cours",
   },
   methods: {
   ...mapActions(['updateCours']),
+    ...mapActions(['updateDashboard']),
     async addLesson(){
       const tempObj = {
         category: this.cat,
@@ -164,6 +165,7 @@ name: "Cours",
       this.done = true
     },
     linkCours(){
+      this.updateDashboard(0)
       this.$router.replace({name: 'Dashboard'})
     }
   }
