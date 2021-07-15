@@ -143,32 +143,51 @@
                <v-list-item-title>Contact</v-list-item-title>
              </v-list-item-content>
            </v-list-item>
-           <v-list-item
-               link
-               to="/login"
-               class="login"
-           >
-             <v-list-item-icon>
-               <v-icon>mdi-account</v-icon>
-             </v-list-item-icon>
 
-             <v-list-item-content>
-               <v-list-item-title>Se connecter</v-list-item-title>
-             </v-list-item-content>
-           </v-list-item>
-           <v-list-item
-               link
-               to="/register"
-               class="register"
-           >
-             <v-list-item-icon>
-               <v-icon>mdi-login-variant</v-icon>
-             </v-list-item-icon>
+           <div v-if="loggedIn">
+             <v-list-item
+                 link
+                 class="login"
+                 @click="signOut"
+             >
+               <v-list-item-icon>
+                 <v-icon>mdi-logout-variant</v-icon>
+               </v-list-item-icon>
 
-             <v-list-item-content>
-               <v-list-item-title>S'inscrire</v-list-item-title>
-             </v-list-item-content>
-           </v-list-item>
+               <v-list-item-content>
+                 <v-list-item-title>Déconnexion</v-list-item-title>
+               </v-list-item-content>
+             </v-list-item>
+           </div>
+
+           <div v-else>
+             <v-list-item
+                 link
+                 to="/login"
+                 class="login"
+             >
+               <v-list-item-icon>
+                 <v-icon>mdi-account</v-icon>
+               </v-list-item-icon>
+
+               <v-list-item-content>
+                 <v-list-item-title>Se connecter</v-list-item-title>
+               </v-list-item-content>
+             </v-list-item>
+             <v-list-item
+                 link
+                 to="/register"
+                 class="register"
+             >
+               <v-list-item-icon>
+                 <v-icon>mdi-login-variant</v-icon>
+               </v-list-item-icon>
+
+               <v-list-item-content>
+                 <v-list-item-title>S'inscrire</v-list-item-title>
+               </v-list-item-content>
+             </v-list-item>
+           </div>
          </v-list-item-group>
 
 
@@ -374,7 +393,7 @@ v-list-item:hover {
   }
 
   .nav {
-    padding: 0;
+    padding: 0 0 0 1rem;
   }
 }
 </style>

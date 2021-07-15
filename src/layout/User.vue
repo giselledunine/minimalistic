@@ -545,7 +545,7 @@ export default {
       display: block;
     }
     .nav {
-      padding: 0 1rem;
+      padding: 0 2rem 0 1rem;
     }
 
     .sidebar{
