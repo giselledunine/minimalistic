@@ -28,7 +28,7 @@
     </v-col>
   </v-row>
   <v-row v-else>
-    <v-col cols="12" sm="3" v-for="(cours, idx) in mentor.cours" :key="idx">
+    <v-col cols="12" sm="4" lg="3" v-for="(cours, idx) in mentor.cours" :key="idx">
       <v-card class="cardProgress borderRadius" dark>
         <v-progress-circular
             class="progessCircle"

@@ -107,6 +107,7 @@
            <v-list-item
                link
                to="/mentors"
+               @click="drawer = false"
            >
              <v-list-item-icon>
                <v-icon>mdi-account-supervisor-circle-outline</v-icon>
@@ -131,6 +132,7 @@
            </v-list-item>
            <v-list-item
                link
+               @click="drawer = false"
                to="/contact"
            >
              <v-list-item-icon>

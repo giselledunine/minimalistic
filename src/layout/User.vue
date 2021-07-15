@@ -33,7 +33,7 @@
               </template>
 
               <v-list class="menu">
-                <v-list-item to="/dashboard">
+                <v-list-item to="/dashboard" >
                   <v-list-item-icon>
                     <v-icon>
                       mdi-account
@@ -106,6 +106,7 @@
         >
           <v-list-item
               link
+              @click="drawer = false"
           >
             <v-list-item-icon>
               <v-icon color="inherit">mdi-chart-bar</v-icon>
@@ -117,6 +118,7 @@
           </v-list-item>
           <v-list-item
               link
+              @click="drawer = false"
           >
             <v-list-item-icon>
               <v-icon>mdi-bookmark-outline</v-icon>
@@ -128,6 +130,7 @@
           </v-list-item>
           <v-list-item
               link
+              @click="drawer = false"
           >
             <v-list-item-icon>
               <v-icon>mdi-archive-outline</v-icon>
@@ -139,6 +142,7 @@
           </v-list-item>
           <v-list-item
               link
+              @click="drawer = false"
           >
             <v-list-item-icon>
               <v-icon>mdi-calendar</v-icon>
@@ -151,6 +155,7 @@
           <p>SUPPORT</p>
           <v-list-item
               link
+              @click="drawer = false"
           >
             <v-list-item-icon>
               <v-icon color="inherit">mdi-help-circle-outline</v-icon>
@@ -162,6 +167,7 @@
           </v-list-item>
           <v-list-item
               link
+              @click="drawer = false"
           >
             <v-list-item-icon>
               <v-icon>mdi-information-outline</v-icon>
@@ -286,6 +292,20 @@
         <div v-if="dashboard === 0" class="fullwidth">
           <Dashboard/>
         </div>
+        <div v-else class="fullwidth">
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-card dark width="100%" class="card">
+                  <v-card-title>
+                    <v-icon class="icon" color="yellow">mdi-alert</v-icon>
+                    Page en cours de développement
+                  </v-card-title>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </div>
       </v-fade-transition>
     </div>
 
@@ -383,6 +403,10 @@ export default {
     text-decoration: none;
   }
 
+  .icon {
+    margin-right: 1rem;
+  }
+
   .btnConnect {
     font-family: Lato, sans-serif;
     font-size: 1rem;
@@ -457,6 +481,10 @@ export default {
 
   .mobile {
     display: none;
+  }
+
+  .card {
+    text-align: center !important;
   }
 
   @media (max-width: 960px){
