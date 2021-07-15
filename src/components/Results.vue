@@ -44,7 +44,7 @@
             <v-card hover @click="mentorLink(mentor.id)" class="mentors">
               <v-img
                   height="190"
-                  src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+                  :src="`https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/${mentor.img}?alt=media&token=2e610141-8e43-4bac-a612-929c2566d0cc`"
               ></v-img>
               <v-card-title>{{mentor.firstname}} {{mentor.lastname}}</v-card-title>
               <v-card-text>Mentor en {{ mentor.specialtyName }}</v-card-text>
