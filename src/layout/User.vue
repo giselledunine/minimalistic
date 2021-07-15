@@ -508,7 +508,7 @@ export default {
   .menuMobile {
     overflow: scroll !important;
     height: 100vh !important;
-    padding-bottom: 80px;
+    padding-bottom: 100px;
   }
 
   .sidebar {
