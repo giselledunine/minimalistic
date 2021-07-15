@@ -65,7 +65,7 @@
     </b-navbar>
 
 
-    <v-navigation-drawer width="375" class="menu" absolute temporary v-model="drawer">
+    <v-navigation-drawer width="375" class="menu menuMobile" absolute temporary v-model="drawer">
       <div class="flex">
         <v-icon color="white" @click="drawer = false">mdi-close</v-icon>
       </div>
@@ -330,6 +330,8 @@
                   <v-list-item-title>Déconnexion</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
+
+
               </v-list-item-group>
 
 
@@ -502,10 +504,8 @@ export default {
   }
 
   .menuMobile {
-    background-color: black;
-    color: white !important;
-    padding: 2rem;
-    width: 90vw !important;
+    overflow: scroll !important;
+    height: 100vh !important;
   }
 
   .sidebar {
