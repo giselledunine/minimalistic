@@ -124,7 +124,7 @@ export default {
   name: "User",
   data(){
     return {
-      group: 0,
+      group: this.dashboard,
       imageProfil: 'pregasus.jpeg',
     }
   },
@@ -144,12 +144,14 @@ export default {
     storageRef.child(this.user.image).getDownloadURL().then((url) => {
       this.imageProfil = url
     })
+    this.setDashboard()
   },
   updated() {
     this.updateDashboard(this.group)
   },
   methods: {
     ...mapActions(['updateDashboard']),
+    ...mapActions(['setDashboard'])
   }
 }
 </script>

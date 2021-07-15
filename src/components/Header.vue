@@ -66,7 +66,7 @@
      </b-navbar>
    </div>
    <div>
-     <v-navigation-drawer class="menu" absolute temporary right v-model="drawer">
+     <v-navigation-drawer width="375" class="menu" absolute temporary v-model="drawer">
        <div class="flex">
          <v-icon color="white" @click="drawer = false">mdi-close</v-icon>
        </div>
@@ -77,7 +77,7 @@
                  color="#6081FA"
                  size="90"
              >
-               <img :src="profilImage" alt="avatar">
+               <img src="https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/pegasus.png?alt=media&token=0052d090-e1a5-44de-9a45-5ef754133937" alt="avatar">
              </v-avatar>
              <p>{{ user.firstname }} {{ user.lastname }}s</p>
              <v-chip label text-color="#ffffff" color="#6081FA">
@@ -188,7 +188,7 @@ name: "default",
     profilImage: 'pegasus.jpeg',
     loading: true,
     drawer: false,
-    group: null,
+    group: 0,
   }
   },
   computed: {
@@ -213,11 +213,12 @@ name: "default",
     })
   },
   updated() {
-    this.setDashboard(this.group)
+    console.log(this.group)
+    this.updateDashboard(2)
   },
   methods: {
   ...mapActions(['setUser']),
-    ...mapActions(["updateDashboard"]),
+    ...mapActions(['updateDashboard']),
     async signOut(){
       try{
        await firebase.auth().signOut();
@@ -236,9 +237,6 @@ name: "default",
         console.log(err)
       }
     },
-    setDashboard(){
-      this.updateDashboard(this.group)
-    }
   }
 }
 </script>
@@ -271,6 +269,7 @@ a:hover {
 
 .flex {
   display: flex;
+  align-items: flex-end;
 }
 
 .menu {
@@ -313,7 +312,6 @@ v-list-item:hover {
   padding: 1rem;
   background-color: black !important;
   color: white !important;
-  width: 375px !important;
 }
 
 .active {
