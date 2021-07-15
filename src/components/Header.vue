@@ -143,6 +143,32 @@
                <v-list-item-title>Contact</v-list-item-title>
              </v-list-item-content>
            </v-list-item>
+           <v-list-item
+               link
+               to="/login"
+               class="login"
+           >
+             <v-list-item-icon>
+               <v-icon>mdi-account</v-icon>
+             </v-list-item-icon>
+
+             <v-list-item-content>
+               <v-list-item-title>Se connecter</v-list-item-title>
+             </v-list-item-content>
+           </v-list-item>
+           <v-list-item
+               link
+               to="/register"
+               class="register"
+           >
+             <v-list-item-icon>
+               <v-icon>mdi-login-variant</v-icon>
+             </v-list-item-icon>
+
+             <v-list-item-content>
+               <v-list-item-title>S'inscrire</v-list-item-title>
+             </v-list-item-content>
+           </v-list-item>
          </v-list-item-group>
 
 
@@ -324,6 +350,16 @@ v-list-item:hover {
 
 .flex {
   justify-content: flex-end;
+}
+
+.login {
+  border: 1px solid #6081FA;
+  margin-bottom: 1rem !important;
+  color: #6081fa !important;
+}
+
+.register {
+  background-color: #6081FA;
 }
 
 .mobile {
