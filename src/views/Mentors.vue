@@ -74,6 +74,7 @@ name: "Mentors",
   }
   },
   async mounted(){
+    window.scrollTo(0, 0);
   db.collection('mentors').get().then((snapshot) => {
         snapshot.docs.forEach((doc) => {
           console.log(doc.id)

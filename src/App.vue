@@ -34,6 +34,7 @@ export default {
     this.scrollToTop();
   },
   created(){
+    window.scrollTo(0, 0);
     this.setUser();
     firebase.auth().onAuthStateChanged(user => {
       if(user){
@@ -60,6 +61,7 @@ export default {
     ...mapActions(['setDashboard']),
     scrollToTop() {
       window.scrollTo(0, 0);
+      console.log('scroll')
     },
     connect(){
       if (this.prenom === "" && this.nom === "" && this.email === "") {

@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  name: "Nothing"
+  name: "Nothing",
+  mounted() {
+    window.scrollTo(0, 0);
+  }
 }
 </script>
 

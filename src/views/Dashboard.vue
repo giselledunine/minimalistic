@@ -36,7 +36,7 @@
             :size="110"
             :width="12"
             :value="countProgress(cours.id)"
-            :color="countProgress(cours.id) === 0 ? '#515151' : allCours.find(el => el.slug === cours.id).color"
+            :color="countProgress(cours.id) === 0 ? '#515151' : allCours.find(el => el.slug === cours.id) ? allCours.find(el => el.slug === cours.id).color : '#515151'"
         >
           {{countProgress(cours.id)}} %
         </v-progress-circular>
@@ -145,6 +145,7 @@ name: "Dashboard",
   },
   mounted(){
    this.getMentor()
+    window.scrollTo(0, 0);
   },
   methods: {
     async getMentor(){

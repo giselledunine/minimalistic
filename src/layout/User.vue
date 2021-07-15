@@ -345,7 +345,7 @@
         <div v-if="dashboard === 0" class="fullwidth">
           <Dashboard/>
         </div>
-        <div v-else class="fullwidth">
+        <div v-else class="wrapper fullwidth">
           <v-container>
             <v-row>
               <v-col cols="12">
@@ -402,6 +402,7 @@ export default {
     this.group = this.dashboard
   },
   mounted() {
+    window.scrollTo(0, 0);
     const storageRef = firebase.storage().ref()
     storageRef.child(this.user.image).getDownloadURL().then((url) => {
       this.imageProfil = url
