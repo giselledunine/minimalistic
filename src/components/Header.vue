@@ -106,6 +106,7 @@
          >
            <v-list-item
                link
+               to="/mentors"
            >
              <v-list-item-icon>
                <v-icon>mdi-account-supervisor-circle-outline</v-icon>
@@ -117,6 +118,8 @@
            </v-list-item>
            <v-list-item
                link
+               href="https://minimalistic-mentoring.medium.com/"
+               target="_blank"
            >
              <v-list-item-icon>
                <v-icon>mdi-post-outline</v-icon>
@@ -128,6 +131,7 @@
            </v-list-item>
            <v-list-item
                link
+               to="/contact"
            >
              <v-list-item-icon>
                <v-icon>mdi-phone</v-icon>
