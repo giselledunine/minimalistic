@@ -399,6 +399,11 @@ v-list-item:hover {
 
   .nav {
     padding: 0 0 0 1rem;
+    position: fixed;
+    background-color: black;
+    width: 100%;
+    z-index: 100;
+    top: 0;
   }
 }
 </style>

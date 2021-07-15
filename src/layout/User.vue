@@ -86,7 +86,7 @@
                 <img :src="imageProfil" alt="avatar">
               </v-avatar>
             </v-btn>
-            <p>{{ user.firstname }} {{ user.lastname }}s</p>
+            <p>{{ user.firstname }} {{ user.lastname }}</p>
             <v-chip label text-color="#ffffff" color="#6081FA">
               Premium
             </v-chip>
@@ -560,6 +560,14 @@ export default {
     }
     .nav {
       padding: 0 2rem 0 1rem;
+      position: fixed;
+      background-color: black;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .fullwidth {
+      margin-top: 3rem;
     }
 
     .sidebar{

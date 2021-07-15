@@ -31,6 +31,7 @@ export default {
   },
   mounted(){
     this.setScores();
+    this.scrollToTop();
   },
   created(){
     this.setUser();
@@ -57,6 +58,9 @@ export default {
     ...mapActions(['setUser']),
     ...mapActions(['setScores']),
     ...mapActions(['setDashboard']),
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
     connect(){
       if (this.prenom === "" && this.nom === "" && this.email === "") {
         this.empty = true
