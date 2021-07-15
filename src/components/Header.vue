@@ -59,7 +59,7 @@
      </b-navbar>
    </div>
    <div>
-     <v-navigation-drawer width="375" class="menu" absolute temporary v-model="drawer">
+     <v-navigation-drawer width="375" class="menu" absolute app temporary v-model="drawer">
        <div v-if="loggedIn">
          <v-list-item>
            <v-list-item-content>
@@ -399,6 +399,7 @@ v-list-item:hover {
 
   .menu {
     padding-top: 6rem;
+    position: fixed;
   }
 
   .nav {

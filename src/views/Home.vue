@@ -14,7 +14,7 @@
         >
           Votre incription a bien été prise en compte
         </v-snackbar>
-        <b-button type="submit" class="btn"><router-link class="color" to="/register">Trouver votre mentor</router-link> </b-button>
+        <b-button type="submit" class="btn"><router-link class="color" to="/mentors">Trouver votre mentor</router-link> </b-button>
         <!--
         <b-button class="btn ">Trouver un Mentor</b-button>
         -->

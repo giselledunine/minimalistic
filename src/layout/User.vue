@@ -568,6 +568,7 @@ export default {
 
     .menu {
       padding-top: 6rem;
+      position: fixed;
     }
 
     .sidebar{
