@@ -73,12 +73,20 @@
        <v-list-item>
          <v-list-item-content>
            <div class="userId">
-             <v-avatar
-                 color="#6081FA"
-                 size="90"
-             >
-               <img src="https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/pegasus.png?alt=media&token=0052d090-e1a5-44de-9a45-5ef754133937" alt="avatar">
-             </v-avatar>
+               <v-btn
+                   to="/dashboard"
+                   class="mx-3"
+                   fab
+                   dark
+                   color="teal"
+               >
+                 <v-avatar
+                     color="#6081FA"
+                     size="90"
+                 >
+                   <img src="https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/pegasus.jpeg?alt=media&token=0052d090-e1a5-44de-9a45-5ef754133937" alt="avatar">
+                 </v-avatar>
+               </v-btn>
              <p>{{ user.firstname }} {{ user.lastname }}s</p>
              <v-chip label text-color="#ffffff" color="#6081FA">
                Premium
@@ -237,6 +245,9 @@ name: "default",
         console.log(err)
       }
     },
+    routeDashboard(){
+      this.$router.replace({name: "Dashboard"})
+    }
   }
 }
 </script>
@@ -283,6 +294,11 @@ a:hover {
 
 v-list-item:hover {
   background-color: #232323;
+}
+
+.v-btn--fab.v-size--default {
+  height: 72px !important;
+  width: 72px !important;
 }
 
 .btn {

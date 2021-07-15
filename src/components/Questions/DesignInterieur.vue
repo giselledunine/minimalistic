@@ -20,6 +20,12 @@
 
                   <v-list-item link rounded v-for="(text, key) in question.questions" :key="key">
                     <v-list-item-icon>
+                      <v-icon v-if="key === questionsScores[idx].score">
+                        mdi-check-circle
+                      </v-icon>
+                      <v-icon v-else>
+                        mdi-radiobox-blank
+                      </v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                       <v-list-item-title v-text="text.text">
