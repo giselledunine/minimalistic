@@ -5,7 +5,10 @@
         <img src="../assets/img/minimalistic-white.png" alt="logo" height="70px">
       </b-link>
 
-      <div class="mobile">
+      <div class="mobile" v-if="drawer">
+        <v-icon color="white" @click="drawer = false">mdi-close</v-icon>
+      </div>
+      <div class="mobile" v-else>
         <v-icon color="white" @click="drawer = true">mdi-menu</v-icon>
       </div>
 
@@ -66,9 +69,6 @@
 
 
     <v-navigation-drawer width="375" class="menu menuMobile" absolute temporary v-model="drawer">
-      <div class="flex">
-        <v-icon color="white" @click="drawer = false">mdi-close</v-icon>
-      </div>
       <v-list-item>
         <v-list-item-content>
           <div class="userId">
@@ -564,6 +564,10 @@ export default {
       background-color: black;
       width: 100%;
       z-index: 100;
+    }
+
+    .menu {
+      padding-top: 6rem;
     }
 
     .sidebar{

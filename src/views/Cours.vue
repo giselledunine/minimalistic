@@ -17,7 +17,7 @@
                   color="#6081FA"
                   size="110"
               >
-                <img src="@/assets/img/avatar1.png" alt="avatar">
+                <img :src="`https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/${mentor.img}?alt=media&token=272a4dc7-a3a5-432a-ab79-b35617a31070`" alt="avatar">
               </v-avatar>
               <v-card-title>
                 {{ mentor.firstname }} {{mentor.lastname}}

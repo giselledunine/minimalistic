@@ -193,10 +193,6 @@ p{
   }
 
 @media screen and (max-width: 960px) {
-  .fullwidth {
-    margin-top: 3rem;
-  }
-
   .wrapper {
     margin-top: 5rem;
   }
