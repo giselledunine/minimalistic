@@ -9,7 +9,7 @@
         <v-snackbar
             :timeout="5000"
             :value="snackbar"
-            color="deep-purple accent-4"
+            color="#6081FA"
             elevation="24"
         >
           Votre incription a bien été prise en compte
@@ -70,7 +70,7 @@
     </div>
   <div class="paddingImg">
     <v-lazy>
-      <img src="./../assets/img/fond2.png" width="100%" alt="videos">
+      <iframe width="100%" height="515" src="https://www.youtube.com/embed/F0w9gFZfVFY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </v-lazy>
   </div>
     <div class="paddingImg">
@@ -264,7 +264,7 @@
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
-                <b-button class="btn">Commencer</b-button>
+                <b-button class="btn btnOther">Commencer</b-button>
               </v-card>
             </v-col>
             <v-col cols="12" sm="5" >
@@ -334,7 +334,7 @@
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
-                <b-button class="btn">Commencer</b-button>
+                <b-button class="btn btnOther">Commencer</b-button>
               </v-card>
             </v-col>
           </v-row>
@@ -485,7 +485,7 @@ name: "Home",
     margin-top: 3rem;
   }
 
-  .btn {
+  .btnOther {
     width: 100% !important;
   }
 
@@ -688,6 +688,10 @@ name: "Home",
     }
 
     @media screen and (max-width: 600px) {
+      h1 {
+        margin: 0 !important;
+      }
+
       .show {
         display: none;
       }

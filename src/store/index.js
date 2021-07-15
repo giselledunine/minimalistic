@@ -11,6 +11,7 @@ const store = new Vuex.Store({
             cours: [],
         },
         scores: [],
+        dashboard: 0,
     },
     mutations: {
       updateUser (state,payload) {
@@ -21,6 +22,16 @@ const store = new Vuex.Store({
         setUser (state){
           const jsonObject = JSON.parse(localStorage.getItem('user'))
           return state.user = jsonObject;
+        },
+
+        setDashboard (state){
+            const jsonObject = JSON.parse(localStorage.getItem('dashboard'))
+            return state.dashboard = jsonObject;
+        },
+
+        updateDashboard(state, payload) {
+          state.dashboard = payload
+            return localStorage.setItem('dashboard', JSON.stringify(state.dashboard))
         },
 
         updateCours (state, payload) {
@@ -57,6 +68,16 @@ const store = new Vuex.Store({
             }
         },
 
+        setDashboard(context){
+            if(localStorage.getItem('dashboard')){
+                context.commit('setDashboard');
+            }
+        },
+
+        updateDashboard(context, payload) {
+            context.commit('updateDashboard', payload)
+        },
+
         updateCours(context, payload){
             context.commit('updateCours', payload);
         },
@@ -81,7 +102,8 @@ const store = new Vuex.Store({
     },
     getters: {
         user: state => state.user,
-        scores: state => state.scores
+        scores: state => state.scores,
+        dashboard: state => state.dashboard
     }
 })
 

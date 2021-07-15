@@ -105,7 +105,7 @@
         </v-navigation-drawer>
       </div>
       <v-fade-transition>
-        <div v-if="group === 0" class="fullwidth">
+        <div v-if="dashboard === 0" class="fullwidth">
           <Dashboard/>
         </div>
       </v-fade-transition>
@@ -117,7 +117,7 @@
 <script>
 import Header from "@/components/Header";
 import Dashboard from "@/views/Dashboard";
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import {firebase} from '@/main.js'
 
 export default {
@@ -130,16 +130,26 @@ export default {
   },
   computed: {
     ...mapGetters(['user']),
+    ...mapGetters(['dashboard'])
   },
   components: {
     Header,
     Dashboard,
+  },
+  created() {
+    this.group = this.dashboard
   },
   mounted() {
     const storageRef = firebase.storage().ref()
     storageRef.child(this.user.image).getDownloadURL().then((url) => {
       this.imageProfil = url
     })
+  },
+  updated() {
+    this.updateDashboard(this.group)
+  },
+  methods: {
+    ...mapActions(['updateDashboard']),
   }
 }
 </script>

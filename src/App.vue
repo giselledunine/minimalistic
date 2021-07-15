@@ -34,6 +34,7 @@ export default {
   },
   created(){
     this.setUser();
+    this.setDashboard()
     firebase.auth().onAuthStateChanged(user => {
       if(user){
         this.loggedIn = true
@@ -56,6 +57,7 @@ export default {
   methods: {
     ...mapActions(['setUser']),
     ...mapActions(['setScores']),
+    ...mapActions(['setDashboard']),
     connect(){
       if (this.prenom === "" && this.nom === "" && this.email === "") {
         this.empty = true
@@ -180,7 +182,6 @@ p{
 
 .wrapper {
   height: fit-content;
-  padding-bottom: 7rem;
 }
 
 .footer {

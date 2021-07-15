@@ -1,171 +1,176 @@
 <template>
  <div>
-   <b-navbar class="nav" toggleable="lg" type="dark">
-     <b-link to="/">
-       <img src="../assets/img/minimalistic-white.png" alt="logo" height="70px">
-     </b-link>
+   <div>
+     <b-navbar class="nav" toggleable="lg" type="dark">
+       <b-link to="/">
+         <img src="../assets/img/minimalistic-white.png" alt="logo" height="70px">
+       </b-link>
 
-     <div class="mobile">
-       <v-icon color="white" @click="drawer = true">mdi-menu</v-icon>
-     </div>
+       <div class="mobile">
+         <v-icon color="white" @click="drawer = true">mdi-menu</v-icon>
+       </div>
 
-     <b-collapse id="nav-collapse" is-nav>
-       <!-- Right aligned nav items -->
-       <b-navbar-nav class="ml-auto">
-         <!-- <b-nav-item to="/apropos">À propos</b-nav-item> -->
-         <!-- <b-nav-item to="/projets">Formule d'abonnement</b-nav-item> -->
-         <b-nav-item class="navItem" to="/mentors">Mentors</b-nav-item>
-         <b-nav-item class="navItem" href="https://minimalistic-mentoring.medium.com/" target="_blank">Blog</b-nav-item>
-         <b-nav-item class="navItem" to="/contact">Contact</b-nav-item>
+       <b-collapse id="nav-collapse" is-nav>
+         <!-- Right aligned nav items -->
+         <b-navbar-nav class="ml-auto">
+           <!-- <b-nav-item to="/apropos">À propos</b-nav-item> -->
+           <!-- <b-nav-item to="/projets">Formule d'abonnement</b-nav-item> -->
+           <b-nav-item class="navItem" to="/mentors">Mentors</b-nav-item>
+           <b-nav-item class="navItem" href="https://minimalistic-mentoring.medium.com/" target="_blank">Blog</b-nav-item>
+           <b-nav-item class="navItem" to="/contact">Contact</b-nav-item>
 
-         <div class="display" v-if="loggedIn">
-           <v-menu v-if="!loading" dark offset-y>
+           <div class="display" v-if="loggedIn">
+             <v-menu v-if="!loading" dark offset-y>
 
-             <template v-slot:activator="{ on, attrs }">
-               <v-avatar
-                   v-bind="attrs"
-                   v-on="on"
-                   color="#6081FA"
-                   size="40"
-               >
-                 <img :src="profilImage" alt="avatar">
-               </v-avatar>
-             </template>
+               <template v-slot:activator="{ on, attrs }">
+                 <v-avatar
+                     v-bind="attrs"
+                     v-on="on"
+                     color="#6081FA"
+                     size="40"
+                 >
+                   <img :src="profilImage" alt="avatar">
+                 </v-avatar>
+               </template>
 
-             <v-list class="menu">
-               <v-list-item to="/dashboard">
-                 <v-list-item-icon>
-                   <v-icon>
-                     mdi-account
-                   </v-icon>
-                 </v-list-item-icon>
-                 <v-list-item-content>
-                   <v-list-item-title>Dashboard</v-list-item-title>
-                 </v-list-item-content>
-               </v-list-item>
-               <v-list-item>
-                 <v-btn @click="signOut" class="text">
-                   <v-icon left>
-                     mdi-logout-variant
-                   </v-icon>
-                   Déconnexion
-                 </v-btn>
-               </v-list-item>
-             </v-list>
-           </v-menu>
-         </div>
+               <v-list class="menu">
+                 <v-list-item to="/dashboard">
+                   <v-list-item-icon>
+                     <v-icon>
+                       mdi-account
+                     </v-icon>
+                   </v-list-item-icon>
+                   <v-list-item-content>
+                     <v-list-item-title>Dashboard</v-list-item-title>
+                   </v-list-item-content>
+                 </v-list-item>
+                 <v-list-item>
+                   <v-btn @click="signOut" class="text">
+                     <v-icon left>
+                       mdi-logout-variant
+                     </v-icon>
+                     Déconnexion
+                   </v-btn>
+                 </v-list-item>
+               </v-list>
+             </v-menu>
+           </div>
 
-         <div class="display" v-else>
-           <router-link to="/login" class="btnConnect">Se connecter</router-link>
-           <b-button to="/register" class="btn">S'inscrire</b-button>
-         </div>
+           <div class="display" v-else>
+             <router-link to="/login" class="btnConnect">Se connecter</router-link>
+             <b-button to="/register" class="btn">S'inscrire</b-button>
+           </div>
 
-       </b-navbar-nav>
-     </b-collapse>
-   </b-navbar>
-   <v-navigation-drawer class="menu" absolute temporary right v-model="drawer">
-     <div class="flex">
-       <v-icon color="white" @click="drawer = false">mdi-close</v-icon>
-     </div>
-     <v-list-item>
-       <v-list-item-content>
-         <div class="userId">
-           <v-avatar
-               color="#6081FA"
-               size="90"
-           >
-             <img :src="profilImage" alt="avatar">
-           </v-avatar>
-           <p>{{ user.firstname }} {{ user.lastname }}s</p>
-           <v-chip label text-color="#ffffff" color="#6081FA">
-             Premium
-           </v-chip>
-         </div>
-       </v-list-item-content>
-     </v-list-item>
+         </b-navbar-nav>
+       </b-collapse>
+     </b-navbar>
+   </div>
+   <div>
+     <v-navigation-drawer class="menu" absolute temporary right v-model="drawer">
+       <div class="flex">
+         <v-icon color="white" @click="drawer = false">mdi-close</v-icon>
+       </div>
+       <v-list-item>
+         <v-list-item-content>
+           <div class="userId">
+             <v-avatar
+                 color="#6081FA"
+                 size="90"
+             >
+               <img :src="profilImage" alt="avatar">
+             </v-avatar>
+             <p>{{ user.firstname }} {{ user.lastname }}s</p>
+             <v-chip label text-color="#ffffff" color="#6081FA">
+               Premium
+             </v-chip>
+           </div>
+         </v-list-item-content>
+       </v-list-item>
 
 
-     <v-list
-         dense
-         nav
-     >
-       <p>MENU</p>
-       <v-list-item-group
-           v-model="group"
-           class="active"
+       <v-list
+           dense
+           nav
        >
-         <v-list-item
-             link
+         <p>MENU</p>
+         <v-list-item-group
+             v-model="group"
+             class="active"
          >
-           <v-list-item-icon>
-             <v-icon color="inherit">mdi-chart-bar</v-icon>
-           </v-list-item-icon>
+           <v-list-item
+               link
+           >
+             <v-list-item-icon>
+               <v-icon color="inherit">mdi-chart-bar</v-icon>
+             </v-list-item-icon>
 
-           <v-list-item-content>
-             <v-list-item-title>Mon suivi</v-list-item-title>
-           </v-list-item-content>
-         </v-list-item>
-         <v-list-item
-             link
-         >
-           <v-list-item-icon>
-             <v-icon>mdi-bookmark-outline</v-icon>
-           </v-list-item-icon>
+             <v-list-item-content>
+               <v-list-item-title>Mon suivi</v-list-item-title>
+             </v-list-item-content>
+           </v-list-item>
+           <v-list-item
+               link
+           >
+             <v-list-item-icon>
+               <v-icon>mdi-bookmark-outline</v-icon>
+             </v-list-item-icon>
 
-           <v-list-item-content>
-             <v-list-item-title>Mes enregistrements</v-list-item-title>
-           </v-list-item-content>
-         </v-list-item>
-         <v-list-item
-             link
-         >
-           <v-list-item-icon>
-             <v-icon>mdi-archive-outline</v-icon>
-           </v-list-item-icon>
+             <v-list-item-content>
+               <v-list-item-title>Mes enregistrements</v-list-item-title>
+             </v-list-item-content>
+           </v-list-item>
+           <v-list-item
+               link
+           >
+             <v-list-item-icon>
+               <v-icon>mdi-archive-outline</v-icon>
+             </v-list-item-icon>
 
-           <v-list-item-content>
-             <v-list-item-title>Badges</v-list-item-title>
-           </v-list-item-content>
-         </v-list-item>
-         <v-list-item
-             link
-         >
-           <v-list-item-icon>
-             <v-icon>mdi-calendar</v-icon>
-           </v-list-item-icon>
+             <v-list-item-content>
+               <v-list-item-title>Badges</v-list-item-title>
+             </v-list-item-content>
+           </v-list-item>
+           <v-list-item
+               link
+           >
+             <v-list-item-icon>
+               <v-icon>mdi-calendar</v-icon>
+             </v-list-item-icon>
 
-           <v-list-item-content>
-             <v-list-item-title>Mes évènements</v-list-item-title>
-           </v-list-item-content>
-         </v-list-item>
-         <p>SUPPORT</p>
-         <v-list-item
-             link
-         >
-           <v-list-item-icon>
-             <v-icon color="inherit">mdi-help-circle-outline</v-icon>
-           </v-list-item-icon>
+             <v-list-item-content>
+               <v-list-item-title>Mes évènements</v-list-item-title>
+             </v-list-item-content>
+           </v-list-item>
+           <p>SUPPORT</p>
+           <v-list-item
+               link
+           >
+             <v-list-item-icon>
+               <v-icon color="inherit">mdi-help-circle-outline</v-icon>
+             </v-list-item-icon>
 
-           <v-list-item-content>
-             <v-list-item-title>FAQ</v-list-item-title>
-           </v-list-item-content>
-         </v-list-item>
-         <v-list-item
-             link
-         >
-           <v-list-item-icon>
-             <v-icon>mdi-information-outline</v-icon>
-           </v-list-item-icon>
+             <v-list-item-content>
+               <v-list-item-title>FAQ</v-list-item-title>
+             </v-list-item-content>
+           </v-list-item>
+           <v-list-item
+               link
+           >
+             <v-list-item-icon>
+               <v-icon>mdi-information-outline</v-icon>
+             </v-list-item-icon>
 
-           <v-list-item-content>
-             <v-list-item-title>Support</v-list-item-title>
-           </v-list-item-content>
-         </v-list-item>
-       </v-list-item-group>
+             <v-list-item-content>
+               <v-list-item-title>Support</v-list-item-title>
+             </v-list-item-content>
+           </v-list-item>
+         </v-list-item-group>
 
 
-     </v-list>
-   </v-navigation-drawer>
+       </v-list>
+     </v-navigation-drawer>
+   </div>
+
  </div>
 </template>
 
@@ -187,7 +192,8 @@ name: "default",
   }
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['user']),
+    ...mapGetters(['dashboard'])
   },
   created(){
     firebase.auth().onAuthStateChanged(user => {
@@ -197,6 +203,7 @@ name: "default",
         this.loggedIn = false
       }
     })
+    this.group = this.dashboard
   },
   mounted(){
     const storageRef = firebase.storage().ref()
@@ -205,8 +212,12 @@ name: "default",
           this.loading = false
     })
   },
+  updated() {
+    this.setDashboard(this.group)
+  },
   methods: {
   ...mapActions(['setUser']),
+    ...mapActions(["updateDashboard"]),
     async signOut(){
       try{
        await firebase.auth().signOut();
@@ -224,6 +235,9 @@ name: "default",
       }catch(err) {
         console.log(err)
       }
+    },
+    setDashboard(){
+      this.updateDashboard(this.group)
     }
   }
 }
@@ -328,8 +342,14 @@ v-list-item:hover {
 }
 
 @media screen and (max-width: 960px) {
-  .display {
-    display: none;
+
+  .mobile {
+    display: block;
+    padding: 2rem;
+  }
+
+  .nav {
+    padding: 0;
   }
 }
 </style>
