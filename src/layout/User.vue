@@ -1,6 +1,183 @@
 <template>
   <div>
-    <Header></Header>
+    <b-navbar class="nav" toggleable="lg" type="dark">
+      <b-link to="/">
+        <img src="../assets/img/minimalistic-white.png" alt="logo" height="70px">
+      </b-link>
+
+      <div class="mobile">
+        <v-icon color="white" @click="drawer = true">mdi-menu</v-icon>
+      </div>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">
+          <!-- <b-nav-item to="/apropos">À propos</b-nav-item> -->
+          <!-- <b-nav-item to="/projets">Formule d'abonnement</b-nav-item> -->
+          <b-nav-item class="navItem" to="/mentors">Mentors</b-nav-item>
+          <b-nav-item class="navItem" href="https://minimalistic-mentoring.medium.com/" target="_blank">Blog</b-nav-item>
+          <b-nav-item class="navItem" to="/contact">Contact</b-nav-item>
+
+          <div class="display" v-if="loggedIn">
+            <v-menu v-if="!loading" dark offset-y>
+
+              <template v-slot:activator="{ on, attrs }">
+                <v-avatar
+                    v-bind="attrs"
+                    v-on="on"
+                    color="#6081FA"
+                    size="40"
+                >
+                  <img :src="profilImage" alt="avatar">
+                </v-avatar>
+              </template>
+
+              <v-list class="menu">
+                <v-list-item to="/dashboard">
+                  <v-list-item-icon>
+                    <v-icon>
+                      mdi-account
+                    </v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>Dashboard</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-btn @click="signOut" class="text">
+                    <v-icon left>
+                      mdi-logout-variant
+                    </v-icon>
+                    Déconnexion
+                  </v-btn>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </div>
+
+          <div class="display" v-else>
+            <router-link to="/login" class="btnConnect">Se connecter</router-link>
+            <b-button to="/register" class="btn">S'inscrire</b-button>
+          </div>
+
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+
+
+    <v-navigation-drawer width="375" class="menu" absolute temporary v-model="drawer">
+      <div class="flex">
+        <v-icon color="white" @click="drawer = false">mdi-close</v-icon>
+      </div>
+      <v-list-item>
+        <v-list-item-content>
+          <div class="userId">
+            <v-btn
+                to="/dashboard"
+                class="mx-3"
+                fab
+                dark
+                color="teal"
+            >
+              <v-avatar
+                  color="#6081FA"
+                  size="90"
+              >
+                <img src="https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/pegasus.jpeg?alt=media&token=0052d090-e1a5-44de-9a45-5ef754133937" alt="avatar">
+              </v-avatar>
+            </v-btn>
+            <p>{{ user.firstname }} {{ user.lastname }}s</p>
+            <v-chip label text-color="#ffffff" color="#6081FA">
+              Premium
+            </v-chip>
+          </div>
+        </v-list-item-content>
+      </v-list-item>
+
+
+      <v-list
+          dense
+          nav
+      >
+        <p>MENU</p>
+        <v-list-item-group
+            v-model="group"
+            class="active"
+        >
+          <v-list-item
+              link
+          >
+            <v-list-item-icon>
+              <v-icon color="inherit">mdi-chart-bar</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Mon suivi</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+              link
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-bookmark-outline</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Mes enregistrements</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+              link
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-archive-outline</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Badges</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+              link
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-calendar</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Mes évènements</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <p>SUPPORT</p>
+          <v-list-item
+              link
+          >
+            <v-list-item-icon>
+              <v-icon color="inherit">mdi-help-circle-outline</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>FAQ</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+              link
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-information-outline</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Support</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+
+
+      </v-list>
+    </v-navigation-drawer>
+
+
     <div class="flex">
       <div class="sidebar">
         <v-navigation-drawer class="menu" permanent>
@@ -115,7 +292,6 @@
 </template>
 
 <script>
-import Header from "@/components/Header";
 import Dashboard from "@/views/Dashboard";
 import {mapGetters, mapActions} from 'vuex'
 import {firebase} from '@/main.js'
@@ -125,7 +301,13 @@ export default {
   data(){
     return {
       group: this.dashboard,
-      imageProfil: 'pregasus.jpeg',
+      loggedIn: false,
+      closeOnClick: false,
+      model: null,
+      imageProfil: 'pegasus.jpeg',
+      profilImage: 'pegasus.jpeg',
+      loading: true,
+      drawer: false,
     }
   },
   computed: {
@@ -133,10 +315,16 @@ export default {
     ...mapGetters(['dashboard'])
   },
   components: {
-    Header,
     Dashboard,
   },
   created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){
+        this.loggedIn = true
+      }else {
+        this.loggedIn = false
+      }
+    })
     this.group = this.dashboard
   },
   mounted() {
@@ -150,6 +338,7 @@ export default {
     this.updateDashboard(this.group)
   },
   methods: {
+    ...mapActions(['setUser']),
     ...mapActions(['updateDashboard']),
     ...mapActions(['setDashboard'])
   }
@@ -180,13 +369,19 @@ export default {
     margin: 1rem 0;
   }
 
+  .display {
+    display: flex;
+  }
+
   .flex {
     display: flex;
+    justify-content: flex-end;
   }
 
   .menu {
     background-color: black;
     color: white !important;
+    padding: 1rem;
   }
 
   .menuMobile {

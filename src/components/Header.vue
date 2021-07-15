@@ -225,7 +225,7 @@ name: "default",
     this.updateDashboard(2)
   },
   methods: {
-  ...mapActions(['setUser']),
+    ...mapActions(['setUser']),
     ...mapActions(['updateDashboard']),
     async signOut(){
       try{
