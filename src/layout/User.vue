@@ -83,7 +83,7 @@
                   color="#6081FA"
                   size="90"
               >
-                <img src="https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/pegasus.jpeg?alt=media&token=0052d090-e1a5-44de-9a45-5ef754133937" alt="avatar">
+                <img :src="imageProfil" alt="avatar">
               </v-avatar>
             </v-btn>
             <p>{{ user.firstname }} {{ user.lastname }}s</p>
@@ -192,6 +192,7 @@
           <v-list-item
               link
               @click="signOut"
+              class="login"
           >
             <v-list-item-icon>
               <v-icon>mdi-logout-variant</v-icon>
@@ -321,6 +322,7 @@
               <v-list-item
                   link
                   @click="signOut"
+                  class="login"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-logout-variant</v-icon>
@@ -526,6 +528,17 @@ export default {
 
   .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
     color: #B2B2B2!important;
+  }
+
+  .v-btn--fab.v-size--default {
+    height: 72px !important;
+    width: 72px !important;
+  }
+
+  .login {
+    border: 1px solid #6081FA;
+    margin-bottom: 1rem !important;
+    color: #6081fa !important;
   }
 
   v-list-item:hover {

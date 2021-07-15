@@ -34,16 +34,6 @@
                </template>
 
                <v-list class="menu">
-                 <v-list-item @click="toDashboard">
-                   <v-list-item-icon>
-                     <v-icon>
-                       mdi-account
-                     </v-icon>
-                   </v-list-item-icon>
-                   <v-list-item-content>
-                     <v-list-item-title>Dashboard</v-list-item-title>
-                   </v-list-item-content>
-                 </v-list-item>
                  <v-list-item>
                    <v-btn @click="signOut" class="text">
                      <v-icon left>
@@ -70,9 +60,10 @@
        <div class="flex">
          <v-icon color="white" @click="drawer = false">mdi-close</v-icon>
        </div>
-       <v-list-item>
-         <v-list-item-content>
-           <div class="userId">
+       <div v-if="loggedIn">
+         <v-list-item>
+           <v-list-item-content>
+             <div class="userId">
                <v-btn
                    @click="toDashboard"
                    class="mx-3"
@@ -84,16 +75,17 @@
                      color="#6081FA"
                      size="90"
                  >
-                   <img src="https://firebasestorage.googleapis.com/v0/b/minimalistic-6c67a.appspot.com/o/pegasus.jpeg?alt=media&token=0052d090-e1a5-44de-9a45-5ef754133937" alt="avatar">
+                   <img :src="profilImage" alt="avatar">
                  </v-avatar>
                </v-btn>
-             <p>{{ user.firstname }} {{ user.lastname }}s</p>
-             <v-chip label text-color="#ffffff" color="#6081FA">
-               Premium
-             </v-chip>
-           </div>
-         </v-list-item-content>
-       </v-list-item>
+               <p>{{ user.firstname }} {{ user.lastname }}s</p>
+               <v-chip label text-color="#ffffff" color="#6081FA">
+                 Premium
+               </v-chip>
+             </div>
+           </v-list-item-content>
+         </v-list-item>
+       </div>
 
 
        <v-list
@@ -104,6 +96,18 @@
              v-model="group"
              class="active"
          >
+           <div v-if="loggedIn">
+             <v-list-item @click="toDashboard">
+               <v-list-item-icon>
+                 <v-icon>
+                   mdi-account
+                 </v-icon>
+               </v-list-item-icon>
+               <v-list-item-content>
+                 <v-list-item-title>Dashboard</v-list-item-title>
+               </v-list-item-content>
+             </v-list-item>
+           </div>
            <v-list-item
                link
                to="/mentors"
@@ -265,6 +269,7 @@ name: "default",
       this.$router.replace({name: "Dashboard"})
     },
     toDashboard(){
+      this.drawer = false
       this.updateDashboard(0)
       this.$router.replace({name: 'Dashboard'})
     }
