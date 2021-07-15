@@ -3,7 +3,7 @@
     <v-container>
       <v-icon color="#ffffff">mdi-chevron-left</v-icon><router-link to="/mentors">Retour</router-link>
       <v-row>
-        <v-col align-self="end" cols="6" sm="2">
+        <v-col align-self="end" cols="12" sm="12" lg="2">
             <v-skeleton-loader v-if="loading" type="avatar">
             </v-skeleton-loader>
             <v-avatar v-else
@@ -12,17 +12,17 @@
               <img :src="profilImage" alt="avatar">
             </v-avatar>
         </v-col>
-        <v-col cols="6" sm="3" v-if="loading">
+        <v-col cols="12" sm="3" v-if="loading">
           <v-skeleton-loader dark type="list-item-three-line">
 
           </v-skeleton-loader>
         </v-col>
-        <v-col cols="6" sm="6" v-else>
+        <v-col cols="12" sm="6" v-else>
           <p class="name">{{ mentor.firstname }} {{mentor.lastname}}</p>
           <p class="subtitle">Mentor en {{ mentor.specialtyName }}</p>
           <p class="cours">{{ mentor.cours.length }} cours</p>
           <v-row>
-            <v-col cols="3">
+            <v-col cols="12" sm="12" lg="3">
               <v-chip
                   label
                   color="#6081FA"
@@ -31,7 +31,7 @@
                 Super mentor
               </v-chip>
             </v-col>
-            <v-col cols="3" align-self="center">
+            <v-col cols="4" sm="6" lg="3" align-self="center">
               <v-rating
                   class="rating"
                   background-color="white"
@@ -44,12 +44,12 @@
                   :value="3"
               ></v-rating>
             </v-col>
-            <v-col cols="3" align-self="center">
+            <v-col cols="6" sm="6" lg="3" align-self="center">
               <span class="marginLeft">(74 avis)</span>
             </v-col>
           </v-row>
         </v-col>
-        <v-col v-if="ifMentor" cols="12" sm="4" align-self="center" class="alignRight">
+        <v-col v-if="ifMentor" cols="12" sm="6" lg="4" align-self="center" class="alignRight">
           <v-btn
               tile
               color="#3FCA54"
@@ -61,7 +61,7 @@
             Choisis
           </v-btn>
         </v-col>
-        <v-col v-else cols="12" sm="4" align-self="center"  class="alignRight">
+        <v-col v-else cols="12" sm="6" lg="4" align-self="center"  class="alignRight">
           <v-btn
               @click="clickMentor"
               tile
@@ -170,7 +170,7 @@
                   Stella en quelques mots
                 </v-card-title>
                 <v-card-text>
-                  Salut ! Je suis Stella Marques. C’est en 2009 à la suite d’une expérience professionnelle dans le domaine du ... que j’ai décidé d’adopter un mode de vie plus minimaliste. Depuis, j’ai acquis des connaissances  ... Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella Description de Stella
+                  Salut ! Je suis Stella Marques. C’est en 2009 à la suite d’une expérience professionnelle dans le domaine du {{mentor.specialtyName}} que j’ai décidé d’adopter un mode de vie plus minimaliste. Depuis, j’ai acquis des connaissances
                 </v-card-text>
               </v-card>
             </v-col>
