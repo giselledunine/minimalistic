@@ -507,7 +507,7 @@ export default {
 
   .menuMobile {
     overflow: scroll !important;
-    height: 100vh !important;
+    height: 120vh !important;
   }
 
   .sidebar {
