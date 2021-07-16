@@ -43,6 +43,20 @@ export default [
             layout: "user",
             requiredAuth: true,
         },
+        components: {
+            default: () => import('@/views/Dashboard')
+        }
+    },
+    {
+        path: '/nodone',
+        name: 'Notdone',
+        meta: {
+            layout: "user",
+            requiredAuth: true,
+        },
+        components: {
+            default: () => import('@/components/Notdone')
+        }
     },
     {
         path: '/questions',

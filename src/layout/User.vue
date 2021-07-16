@@ -106,6 +106,7 @@
         >
           <v-list-item
               link
+              to="/dashboard"
               @click="drawer = false"
           >
             <v-list-item-icon>
@@ -118,6 +119,7 @@
           </v-list-item>
           <v-list-item
               link
+              to="/nodone"
               @click="drawer = false"
           >
             <v-list-item-icon>
@@ -130,6 +132,7 @@
           </v-list-item>
           <v-list-item
               link
+              to="/nodone"
               @click="drawer = false"
           >
             <v-list-item-icon>
@@ -142,6 +145,7 @@
           </v-list-item>
           <v-list-item
               link
+              to="/nodone"
               @click="drawer = false"
           >
             <v-list-item-icon>
@@ -155,6 +159,7 @@
           <p>SUPPORT</p>
           <v-list-item
               link
+              to="/nodone"
               @click="drawer = false"
           >
             <v-list-item-icon>
@@ -167,6 +172,7 @@
           </v-list-item>
           <v-list-item
               link
+              to="/nodone"
               @click="drawer = false"
           >
             <v-list-item-icon>
@@ -180,6 +186,8 @@
           <p>COMPTE</p>
           <v-list-item
               link
+              to="/nodone"
+              @click="drawer = false"
           >
             <v-list-item-icon>
               <v-icon color="inherit">mdi-cog</v-icon>
@@ -241,6 +249,7 @@
             >
             <v-list-item
                 link
+                to="dashboard"
             >
               <v-list-item-icon>
                 <v-icon color="inherit">mdi-chart-bar</v-icon>
@@ -252,6 +261,7 @@
             </v-list-item>
               <v-list-item
                   link
+                  to="/nodone"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-bookmark-outline</v-icon>
@@ -263,6 +273,7 @@
               </v-list-item>
               <v-list-item
                   link
+                  to="/nodone"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-archive-outline</v-icon>
@@ -274,6 +285,7 @@
               </v-list-item>
               <v-list-item
                   link
+                  to="/nodone"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-calendar</v-icon>
@@ -286,6 +298,7 @@
               <p>SUPPORT</p>
               <v-list-item
                   link
+                  to="/nodone"
               >
                 <v-list-item-icon>
                   <v-icon color="inherit">mdi-help-circle-outline</v-icon>
@@ -297,6 +310,7 @@
               </v-list-item>
               <v-list-item
                   link
+                  to="/nodone"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-information-outline</v-icon>
@@ -310,6 +324,7 @@
               <p>COMPTE</p>
               <v-list-item
                   link
+                  to="/nodone"
               >
                 <v-list-item-icon>
                   <v-icon color="inherit">mdi-cog</v-icon>
@@ -342,23 +357,7 @@
         </v-navigation-drawer>
       </div>
       <v-fade-transition>
-        <div v-if="dashboard === 0" class="fullwidth">
-          <Dashboard/>
-        </div>
-        <div v-else class="wrapper fullwidth">
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-card dark width="100%" class="card">
-                  <v-card-title>
-                    <v-icon class="icon" color="yellow">mdi-alert</v-icon>
-                    Page en cours de développement
-                  </v-card-title>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-container>
-        </div>
+        <slot class="wrapper fullwidth" />
       </v-fade-transition>
     </div>
 
@@ -388,9 +387,6 @@ export default {
     ...mapGetters(['user']),
     ...mapGetters(['dashboard'])
   },
-  components: {
-    Dashboard,
-  },
   created() {
     firebase.auth().onAuthStateChanged(user => {
       if(user){
@@ -411,7 +407,7 @@ export default {
     this.setDashboard()
   },
   updated() {
-    this.updateDashboard(this.group)
+    //this.updateDashboard(this.group)
   },
   methods: {
     ...mapActions(['setUser']),

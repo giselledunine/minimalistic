@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<div class="largeur">
   <h1>Mon suivi</h1>
   <v-card dark  class="card">
     <p class="cardTitle">
@@ -282,6 +282,19 @@ borderRadius {
 .time {
   color: #B2B2B2;
   font-size: 0.8rem;
+}
+
+.largeur {
+  width: 65%;
+  text-align: left;
+}
+
+@media screen and (max-width: 960px) {
+  .largeur {
+    margin-top: 6rem;
+    width: 100%;
+    padding: 1rem;
+  }
 }
 
 </style>

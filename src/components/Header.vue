@@ -37,7 +37,7 @@
                </template>
 
                <v-list class="menu">
-                 <v-list-item @click="toDashboard">
+                 <v-list-item to="/dashboard">
                    <v-list-item-icon>
                      <v-icon>
                        mdi-account
@@ -107,7 +107,7 @@
              class="active"
          >
            <div v-if="loggedIn">
-             <v-list-item @click="toDashboard">
+             <v-list-item link to="/dashboard">
                <v-list-item-icon>
                  <v-icon>
                    mdi-account
@@ -249,10 +249,6 @@ name: "default",
       this.profilImage = url
           this.loading = false
     })
-  },
-  updated() {
-    console.log(this.group)
-    this.updateDashboard(2)
   },
   methods: {
     ...mapActions(['setUser']),
