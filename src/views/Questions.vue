@@ -249,6 +249,7 @@ p {
 
 .questions {
   color: white;
+  margin-bottom: 6rem;
 }
 
 </style>

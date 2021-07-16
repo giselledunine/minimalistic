@@ -28,8 +28,7 @@
                     </v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
-                    <v-list-item-title v-text="text.text">
-                    </v-list-item-title>
+                    <p>{{ text.text }}</p>
                   </v-list-item-content>
 
                 </v-list-item>
@@ -101,6 +100,9 @@ export default {
           ]},
       ],
     }
+  },
+  created() {
+    window.scrollTo(0, 0);
   },
   updated() {
     this.finalScore = this.questionsScores.reduce((acc, curr) => { return acc + curr.score}, 0)/this.totalScore * 100
